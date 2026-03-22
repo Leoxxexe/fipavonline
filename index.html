@@ -3,561 +3,888 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progetto Terza Media</title>
-    <meta name="description" content="Portfolio professionale per il progetto della Terza Media.">
-    <link rel="stylesheet" href="style.css">
+    <title>Leonardo Giorgini | Atleta FIPAV</title>
+    <meta name="description" content="Sito ufficiale FIPAV dedicato a Leonardo Giorgini, talento italiano della pallavolo, centrale/opposto della Sabini Castelferretti. News, biografia, carriera, sponsor e contatti.">
+    <link rel="icon" href="https://www.federvolley.it/sites/all/themes/federvolley_2017/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --nero: #111111;
-            --arancione: #ff6b10;
-            --arancione-chiaro: #ff9652;
-            --nero-blu: #181818;
-            --bianco: #fff;
-            --grigio-chiaro: #222326;
+            --main-blue: #1651a2;
+            --secondary-blue: #297ad0;
+            --black: #212529;
+            --white: #fff;
+            --grey: #f5f8fc;
+            --accent: #49bce6;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, var(--nero-blu) 0%, var(--nero) 45%, var(--arancione-chiaro) 120%);
-            color: var(--bianco);
+            font-family: 'Roboto', Arial, sans-serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.55;
+        }
+        a {
+            color: var(--main-blue);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: var(--secondary-blue);
+        }
+        /* FIPAV-Barra superiore */
+        .fipav-header-top {
+            background: #fff;
+            border-bottom: 1.5px solid #e0e7ef;
+            padding: 0.18em 6vw 0.18em 6vw;
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+        }
+        .fipav-header-top img {
+            height: 40px;
+            margin-right: 0.7em;
+        }
+        .fipav-header-top span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.18em;
+            font-weight: 700;
+            color: var(--main-blue);
+            letter-spacing: 0.12em;
         }
         header {
-            background: linear-gradient(90deg, var(--arancione) 25%, var(--arancione-chiaro) 100%);
-            color: var(--bianco);
-            padding: 30px 0 18px 0;
-            text-align: center;
-            box-shadow: 0 2px 14px rgba(0,0,0,0.22);
-            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--main-blue) 85%, var(--secondary-blue) 100%);
+            color: var(--white);
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.3rem;
-            letter-spacing: 2px;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        nav {
-            margin-top: 17px;
-            background: linear-gradient(90deg, var(--nero) 65%, var(--arancione-chiaro) 150%);
+        .navbar {
             display: flex;
-            justify-content: center;
-            padding: 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.21);
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.7rem 6vw 1rem 6vw;
+            max-width: 1300px;
+            margin: auto;
+            position: relative;
         }
-        nav button {
-            background: transparent;
-            color: var(--arancione);
-            border: none;
-            font-size: 1.07rem;
-            margin: 0 15px;
-            padding: 14px 34px 14px 34px;
+        .navbar h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.09);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            font-size: 1.04rem;
+            font-weight: 500;
+            padding: 6px 5px;
+            transition: color 0.3s;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
             cursor: pointer;
-            border-bottom: 5px solid transparent;
-            transition: border-bottom 0.2s, color 0.25s, background 0.2s;
-            font-weight: 600;
-            outline: none;
-            border-radius: 0 0 18px 18px;
+        }
+        .hamburger span {
+            height: 4px;
+            width: 28px;
+            background: var(--white);
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 850px) {
+            .navbar {
+                padding: 1.0rem 4vw 0.6rem 4vw;
+            }
+        }
+        @media (max-width: 680px) {
+            .nav-links {
+                position: absolute;
+                right: 6vw;
+                top: 70px;
+                background: var(--main-blue);
+                flex-direction: column;
+                gap: 1.3rem;
+                padding: 2rem 2.2rem;
+                border-radius: 8px;
+                box-shadow: 0 6px 28px rgba(20,70,160,0.18);
+                display: none;
+                z-index: 100;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 3.1rem 6vw 2rem 6vw;
+        }
+        .hero-fipav-logo {
+            position: absolute;
+            right: 2vw;
+            top: 2vw;
+            opacity: 0.18;
+            z-index: 0;
+            width: 128px;
+            display: none;
+        }
+        .hero-txt {
+            flex: 1 1 340px;
+            z-index: 2;
+        }
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.35rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--main-blue);
+            margin-bottom: 1.1rem;
+            animation: fadeInUp 1.1s cubic-bezier(.4,0,.2,1) both;
+        }
+        .hero .slogan {
+            font-size: 1.22rem;
+            color: var(--black);
+            margin-bottom: 1.7rem;
+            animation: fadeInUp 1.45s 0.16s both;
+            font-weight: 500;
+        }
+        .hero .btn-main {
+            background: var(--accent);
+            color: var(--main-blue);
+            padding: 0.95em 2em;
+            border: none;
+            border-radius: 34px;
+            font-size: 1.06rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(20,70,160,0.12);
+            transition: background 0.21s, transform 0.2s;
+            margin-top: 1.2rem;
+        }
+        .hero .btn-main:hover {
+            background: var(--secondary-blue);
+            color: var(--white);
+            transform: scale(1.055);
+        }
+        .hero-img {
+            flex: 1 1 355px;
+            min-width: 310px;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .hero-img img {
+            width: 300px;
+            height: 385px;
+            max-width: 90vw;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 10px 44px rgba(20,70,160,0.15);
+            background: #f6f9ff;
+            animation: zoomIn 1.1s cubic-bezier(.3,.7,.2,1) both;
+        }
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.1rem;
+                position: relative;
+            }
+            .hero-fipav-logo {
+                position: absolute;
+                left: 0;
+                width: 95px;
+                top: 17vw;
+                opacity: 0.06;
+                display: block;
+            }
+        }
+        @media (max-width: 700px) {
+            .hero-img img { width: 93vw; height: 58vw; min-width: 110px; min-height: 170px;}
+        }
+        /* Section Titles */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--main-blue);
+            font-weight: 700;
+            margin-bottom: 0.82em;
+            letter-spacing: 0.5px;
+            text-align: center;
+            margin-top: 1em;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            margin: 12px auto 0 auto;
+            width: 52px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* About / Bio */
+        .about {
+            max-width: 1100px;
+            margin: 3rem auto 0 auto;
+            background: var(--grey);
+            border-radius: 14px;
+            padding: 2.1em 7vw 2.1em 7vw;
+            box-shadow: 0 4px 24px rgba(20,70,160,0.09);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.1rem;
+            align-items: flex-start;
+        }
+        .bio-txt {
+            flex: 2.2 1 340px;
+        }
+        .bio-txt p {
+            font-size: 1.12em;
+            margin-bottom: 1.18em;
+        }
+        .bio-data {
+            flex: 1.1 1 218px;
+            background: var(--white);
+            border-radius: 11px;
+            padding: 1.2em 1.2em 1.3em 1.2em;
+            box-shadow: 0 2px 11px rgba(20,70,160,0.037);
+            font-size: 1.1em;
+        }
+        .bio-data ul {
+            list-style: none;
+        }
+        .bio-data ul li {
+            margin-bottom: 0.64em;
+            display: flex;
+            align-items: center;
+        }
+        .bio-data .icon {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            margin-right: 10px;
+            color: var(--secondary-blue);
+        }
+        @media (max-width: 850px) {
+            .about {
+                flex-direction: column;
+                gap: 1.7em;
+            }
+        }
+
+        /* Timeline FIPAV */
+        .timeline {
+            max-width: 1050px;
+            margin: 4em auto 0 auto;
+            position: relative;
+            padding: 2em 6vw 2em 6vw;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 50px;
+            width: 4px;
+            height: calc(100% - 100px);
+            background: var(--main-blue);
+            opacity: 0.10;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        .timeline-list {
             position: relative;
             z-index: 2;
         }
-        nav button.active,
-        nav button:focus {
-            border-bottom: 5px solid var(--arancione);
-            color: var(--bianco);
-            background: linear-gradient(90deg, var(--arancione-chiaro) 0%, var(--arancione) 100%);
-        }
-        .tab-content {
-            display: none;
-            max-width: 900px;
-            margin: 38px auto 0 auto;
-            background: linear-gradient(135deg, #181818 70%, #24190c 100%);
-            padding: 36px 24px;
-            border-radius: 20px;
-            box-shadow: 0 3px 24px rgba(247,110,16,0.18);
-            animation: fadein 0.5s;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        @keyframes fadein {
-            0% {opacity: 0; transform: translateY(20px);}
-            100% {opacity: 1; transform: translateY(0);}
-        }
-        .hero {
-            text-align: center;
-        }
-        .hero h2 {
-            font-size: 2rem;
-            background: linear-gradient(90deg, var(--arancione), var(--arancione-chiaro));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                    text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            color: #ffe1c6;
-            font-size: 1.2rem;
-            margin-bottom: 28px;
-        }
-        .cta-btn {
-            padding: 12px 38px;
-            font-size: 1.1rem;
-            background: linear-gradient(90deg, var(--arancione), var(--arancione-chiaro));
-            border: none;
-            border-radius: 7px;
-            font-weight: 700;
-            color: var(--nero);
-            box-shadow: 0 2px 12px rgba(255,107,16,0.14);
-            cursor: pointer;
-            transition: background 0.17s, box-shadow .13s;
-        }
-        .cta-btn:hover {
-            background: linear-gradient(90deg, #ffa151, var(--arancione));
-            box-shadow: 0 4px 22px rgba(255,107,16,0.27);
-        }
-        .projects-category {
-            margin-bottom: 40px;
-        }
-        .projects-category h3 {
-            background: linear-gradient(90deg,#ff6b10,#ff9652);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            font-size: 1.3rem;
-            margin-bottom: 13px;
-            margin-top: 32px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: left;
-        }
-        .projects {
+        .timeline-item {
             display: flex;
             flex-wrap: wrap;
-            gap: 26px;
-            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 2.4em;
+            position: relative;
+            gap: 2em;
         }
-        .project-card {
-            background: linear-gradient(135deg, #232323 60%, var(--arancione-chiaro) 180%);
-            border-radius: 12px;
-            box-shadow: 0 0 16px rgba(255,107,16,0.21);
-            padding: 23px 18px;
-            flex: 1 1 210px;
-            max-width: 270px;
-            text-align: center;
-            margin-bottom: 12px;
-            color: var(--bianco);
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
         }
-        .project-card h4 {
-            color: var(--arancione);
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.12rem;
+        .timeline-content {
+            background: var(--white);
+            border-radius: 11px;
+            padding: 1.08em 1em 1.12em 1.12em;
+            box-shadow: 0 2px 12px rgba(20,70,160,0.05);
+            min-width: 195px;
+            max-width: 390px;
+            flex: 2 1 270px;
+            animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) both;
+        }
+        .timeline-year {
+            color: var(--main-blue);
             font-weight: 700;
+            font-size: 1.10em;
+            margin-bottom: 0.4em;
         }
-        .project-card p {
-            color: #ffe9d1;
+        .timeline-marker {
+            background: var(--main-blue);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 32px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            box-shadow: 0 1px 8px rgba(20,70,160,0.09);
+            z-index: 4;
+            border: 3px solid var(--accent);
         }
-        .project-card a {
+        @media (max-width: 900px) {
+            .timeline-item, .timeline-item:nth-child(even) {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 700px) {
+            .timeline {
+                padding: 2em 2vw;
+            }
+        }
+
+        /* Badge FIPAV */
+        .badge {
             display: inline-block;
-            margin-top: 10px;
-            padding: 7px 18px;
-            color: var(--nero);
-            background: linear-gradient(90deg, var(--arancione), var(--arancione-chiaro));
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.17s, color 0.17s;
-        }
-        .project-card a:hover {
-            background: var(--arancione);
+            background: #49bce6;
             color: #fff;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 700;
+            padding: 1.5px 8px;
+            margin-left: 7px;
+            letter-spacing: 0.04em;
         }
-        .about {
+        /* Statistics */
+        .stats-section {
+            background: var(--main-blue);
+            color: var(--white);
+            margin-top: 4em;
+            padding: 2.5em 13vw 2.7em 13vw;
+            text-align: center;
+        }
+        .stats-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 35px;
+            gap: 2.2em;
+            justify-content: center;
+            align-items: stretch;
+            max-width: 980px;
+            margin: 2.3em auto 0 auto;
+        }
+        .stat-item {
+            flex: 1 1 150px;
+            background: rgba(255,255,255,0.09);
+            border-radius: 14px;
+            padding: 2.1em 0.7em;
+            box-shadow: 0 2px 15px rgba(20,70,160,0.09);
+            min-width: 140px;
+            margin: 0 8px;
+        }
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.04rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.42em;
+        }
+        .stat-label {
+            font-size: 1.05em;
+            font-weight: 500;
+            letter-spacing: 0.06px;
+        }
+        @media (max-width: 700px) {
+            .stats-section {
+                padding-left: 4vw;
+                padding-right: 4vw;
+            }
+            .stats-grid {
+                gap: 1.1em;
+            }
+        }
+
+        /* Gallery */
+        .gallery-section {
+            max-width: 1100px;
+            margin: 3.7em auto 0 auto;
+            padding: 2em 6vw;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.1em;
+        }
+        .gallery-pic {
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--grey);
+            box-shadow: 0 1px 13px rgba(20,70,160,0.095);
+            cursor: pointer;
+            transition: transform 0.23s;
+            aspect-ratio: 4/5;
+        }
+        .gallery-pic:hover {
+            transform: translateY(-5px) scale(1.035);
+        }
+        .gallery-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 13px;
+        }
+        @media (max-width: 500px) {
+            .gallery-section {
+                padding-left: 2vw;
+                padding-right: 2vw;
+            }
+        }
+
+        /* News/Media */
+        .news-section {
+            margin: 3.6em auto 0 auto;
+            max-width: 1100px;
+            padding: 2em 6vw;
+        }
+        .news-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2em;
+        }
+        .news-card {
+            background: var(--white);
+            border-radius: 13px;
+            box-shadow: 0 2px 15px rgba(20,70,160,0.08);
+            padding: 1.3em 1em;
+            transition: box-shadow 0.24s, transform 0.17s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65em;
+        }
+        .news-card:hover {
+            box-shadow: 0 7px 28px rgba(20,70,160,0.13);
+            transform: translateY(-4px) scale(1.02);
+        }
+        .news-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.13rem;
+            font-weight: 700;
+            color: var(--main-blue);
+        }
+        .news-date {
+            font-size: 0.94em;
+            color: #709cd0;
+        }
+        .news-summary {
+            font-size: 1.01em;
+            margin-bottom: 0.3em;
+        }
+
+        /* Sponsors - FIPAV Style */
+        .sponsor-section {
+            margin: 3.8em auto 0 auto;
+            padding: 1.9em 6vw 2.5em 6vw;
+            background: var(--grey);
+        }
+        .sponsor-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.2em;
+            align-items: center;
+            margin-top: 1.1em;
+        }
+        .sponsor-logo {
+            background: var(--white);
+            border-radius: 9px;
+            padding: 1em 2em;
+            box-shadow: 0 1px 9px rgba(20,70,160,0.11);
+            font-size: 1.46em;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--main-blue);
+            font-weight: 700;
+            min-width: 115px;
+            min-height: 42px;
+            display: flex;
             align-items: center;
         }
-        .about-text {
-            flex: 2;
+
+        /* Contacts */
+        .contact-section {
+            max-width: 1000px;
+            margin: 3.7em auto 2.6em auto;
+            padding: 2em 6vw;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 2px 18px rgba(20,70,160,0.07);
         }
-        .about-img {
-            flex: 1;
-            text-align: center;
-        }
-        .about-img img {
-            max-width: 210px;
-            width: 100%;
-            border-radius: 13px;
-            box-shadow: 0 6px 32px rgba(255,107,16,0.17);
-            border: 3px solid var(--arancione);
-        }
-        .hobby-list {
-            margin-top: 12px;
-            padding-left: 0;
-            list-style: none;
-            color: #ffd1ad;
-        }
-        .hobby-list li::before {
-            content: "• ";
-            color: var(--arancione);
-            font-size: 1.1em;
-        }
-        .skills-list {
-            margin-top: 19px;
+        .contact-flex {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px 12px;
+            gap: 2em;
+            align-items: flex-start;
+            justify-content: space-between;
         }
-        .skill {
-            background: linear-gradient(90deg, #151515 80%, var(--arancione-chiaro) 120%);
-            color: var(--arancione-chiaro);
-            border-radius: 7px;
-            padding: 5px 19px;
-            font-weight: 600;
-            font-size: 1.03em;
-            box-shadow: 0 1px 6px rgba(255,107,16,0.19);
+        .contact-form {
+            flex: 2 1 300px;
         }
-        footer {
-            background: linear-gradient(90deg, var(--arancione), var(--arancione-chiaro));
-            color: var(--nero);
-            text-align: center;
-            padding: 24px 10px;
-            font-size: 1.02rem;
-            margin-top: 39px;
-            letter-spacing: 1px;
-            border-radius: 24px 24px 0 0;
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.97em;
         }
-        @media (max-width: 1000px) {
-            .about {
+        .contact-form input,
+        .contact-form textarea {
+            border: 1.2px solid #d3dffe;
+            border-radius: 8px;
+            padding: 0.64em 1em;
+            font-size: 1em;
+            font-family: inherit;
+            color: var(--black);
+            background: #f7f9fc;
+            resize: none;
+            transition: border 0.2s;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--main-blue);
+        }
+        .contact-form button {
+            background: var(--main-blue);
+            color: var(--white);
+            font-size: 1.11em;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            border: none;
+            border-radius: 40px;
+            padding: 0.9em 2.1em;
+            margin-top: 0.5em;
+            cursor: pointer;
+            transition: background 0.20s, transform 0.11s;
+            box-shadow: 0 2px 8px rgba(20,70,160,0.10);
+        }
+        .contact-form button:hover {
+            background: var(--accent);
+            color: var(--main-blue);
+            transform: scale(1.035);
+        }
+        .contact-info {
+            flex: 1.1 1 170px;
+            margin-top: 1.2em;
+        }
+        .contact-social {
+            display: flex;
+            gap: 1em;
+            margin-top: 0.7em;
+        }
+        .contact-social a {
+            font-size: 2em;
+            color: var(--main-blue);
+            transition: color 0.17s;
+        }
+        .contact-social a:hover {
+            color: var(--secondary-blue);
+        }
+
+        @media (max-width: 900px) {
+            .contact-flex {
                 flex-direction: column;
-                text-align: center;
             }
-            .about-img {
-                margin-bottom: 23px;
-            }
-            .tab-content {
-                padding: 24px 6px;
+            .contact-info {
+                margin-top: 0;
             }
         }
-        @media (max-width: 600px) {
-            nav button {
-                padding: 12px 12px;
-                font-size: 1rem;
-                margin: 0 2px;
+
+        /* Footer - FIPAV */
+        footer {
+            background: #0a2e63;
+            color: var(--white);
+            text-align: center;
+            padding: 2.1em 0 1em 0;
+            margin-top: 1.7em;
+            font-size: 1.08em;
+            position: relative;
+        }
+        footer .footer-fipav-logo {
+            height: 38px;
+            opacity: 0.34;
+            display: block;
+            margin: 0.4em auto 0.5em auto;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
             }
-            .project-card {
-                max-width: 98vw;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
             }
         }
     </style>
+    <!-- Icon CDN for bio and social (remixicon) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
+    <!-- FIPAV Bar Top -->
+    <div class="fipav-header-top">
+        <img src="https://www.federvolley.it/sites/all/themes/federvolley_2017/logo.svg" alt="Logo FIPAV">
+        <span>FEDERAZIONE ITALIANA PALLAVOLO</span>
+    </div>
+    <!-- Navbar -->
     <header>
-        <h1>Progetto Terza Media</h1>
+        <nav class="navbar">
+            <h1>Atleti FIPAV: Leonardo Giorgini</h1>
+            <div class="nav-links" id="navLinks">
+                <a href="#chi-sono">Chi sono</a>
+                <a href="#carriera">Carriera</a>
+                <a href="#statistiche">Statistiche</a>
+                <a href="#gallery">Galleria</a>
+                <a href="#news">News</a>
+                <a href="#sponsor">Sponsor</a>
+                <a href="#contatti">Contatti</a>
+            </div>
+            <div class="hamburger" id="hamburgerMenu" aria-label="Apri Menu" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
     </header>
-    <nav>
-        <button class="tab-btn active" data-tab="home">Home</button>
-        <button class="tab-btn" data-tab="progetti">Progetti</button>
-        <button class="tab-btn" data-tab="chi-siamo">Chi Sono</button>
-        <button class="tab-btn" data-tab="hobby">I Miei Hobby</button>
-        <button class="tab-btn" data-tab="skills">Competenze</button>
-    </nav>
 
-    <div id="home" class="tab-content active">
-        <div class="hero">
-            <h2>Benvenuto sul mio sito professionale!</h2>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-txt">
+            <h2>Leonardo Giorgini</h2>
+            <div class="slogan">Talento italiano al servizio della Sabini Castelferretti U14. Passione, tecnica e aspirazione verso il futuro della pallavolo.</div>
+            <a href="#contatti"><button class="btn-main">Contatta l'atleta</button></a>
+        </div>
+        <div class="hero-img">
+            <img src="https://cdn.discordapp.com/attachments/1341507534288060569/1485414819468283945/WhatsApp_Image_2026-03-23_at_00.07.26.jpeg?ex=69c1c7da&is=69c0765a&hm=49b57bfad6dd5013454ff9c7903d02114752e4b2ee9647e785d620e05bab3b67&" alt="Leonardo Giorgini - Pallavolista" loading="lazy">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="chi-sono">
+        <div class="bio-txt">
+            <h2 class="section-title">Chi sono</h2>
             <p>
-                Questo sito è stato realizzato come progetto per la mia terza media.<br>
-                In queste schede troverai i miei progetti, chi sono, hobby e le mie competenze!
+                <b>Leonardo Giorgini</b>, classe 2012, è tra i giovani talenti più promettenti della Sabini Castelferretti. <br><br>
+                Centrale/opposto dal fisico esplosivo (<b>1.80m</b>) e dagli istinti offensivi decisi, Leonardo si distingue per la serietà in palestra, il carattere positivo e la mentalità vincente.<br><br>
+                La sua passione per la pallavolo nasce fin da piccolo, seguendo le gesta del fratello <b>Giacomo Giorgini</b> – anche lui atleta, con 10 anni di esperienza in più – fonte d’ispirazione e modello di dedizione sportiva. Il rapporto con Giacomo ha alimentato in Leonardo l’amore per la disciplina e la spinta a migliorarsi giorno dopo giorno, anche se non hanno mai giocato insieme.<br><br>
+                La Sabini U14 è composta da una vera squadra di ragazzi di 14 anni, con cui Leonardo condivide traguardi, vittorie e sogni, sempre puntando al massimo nei campionati FIPAV provinciali e nazionali.
             </p>
-            <button onclick="document.querySelector('[data-tab=progetti]').click()" class="cta-btn">Guarda i miei progetti</button>
         </div>
-    </div>
-    <div id="progetti" class="tab-content">
-        <h2 style="background:linear-gradient(90deg,#ff6b10,#ff9652);background-clip:text;-webkit-background-clip:text;color:transparent;text-align:center;">Progetti su Canva</h2>
-        
-        <!-- Categoria 1: Il '900 -->
-        <div class="projects-category">
-            <h3>Il '900</h3>
-            <div class="projects">
-                <div class="project-card">
-                    <h4>Presentazione sul fascismo</h4>
-                    <p>Una presentazione chiara ed efficace che approfondisce la scuola nel periodo del fascismo.</p>
-                    <a href="https://www.canva.com/design/DAG_sUK8k9U/us1VxrWj6p0iAKr8w25I7g/edit?utm_content=DAG_sUK8k9U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Guarda su Canva</a>
+        <div class="bio-data">
+            <ul>
+                <li><i class="ri-user-star-line icon"></i> <b>Nome:</b>&nbsp; Leonardo Giorgini</li>
+                <li><i class="ri-man-line icon"></i> <b>Ruolo:</b>&nbsp; Centrale / Opposto</li>
+                <li><i class="ri-bar-chart-2-line icon"></i> <b>Squadra:</b>&nbsp; Sabini Castelferretti U14</li>
+                <li><i class="ri-ruler-line icon"></i> <b>Altezza:</b>&nbsp; 1.80 m</li>
+                <li><i class="ri-medal-2-line icon"></i> <b>Tesserato FIPAV</b></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Career / Timeline -->
+    <section class="timeline" id="carriera">
+        <h2 class="section-title">Percorso Federale</h2>
+        <div class="timeline-line"></div>
+        <div class="timeline-list">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2022/2023</div>
+                    <div>
+                        <b>Campionato Nazionale U12</b>
+                        <span class="badge">CAMPIONE NAZIONALE</span><br>
+                        Trionfo con la Sabini nel campionato federale U12: un’annata indimenticabile e fondamentale per la crescita di Leonardo.
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h4>Poster sull'arte del '900</h4>
-                    <p>Un poster grafico per esplorare i movimenti artistici del Novecento.</p>
-                    <a href="https://www.canva.com/design/tuo_link_900_2" target="_blank">Guarda su Canva</a>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2023/2024</div>
+                    <div>
+                        <b>Campionato Provinciale U14</b>
+                        <span class="badge">CAMPIONI PROVINCIALI</span><br>
+                        La squadra U14, interamente composta da ragazzi di 14 anni (classe 2010/2011/2012), si afferma come eccellenza della provincia.
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h4>Infografica su eventi storici</h4>
-                    <p>Infografica che riassume gli eventi più importanti del '900.</p>
-                    <a href="https://www.canva.com/design/tuo_link_900_3" target="_blank">Scopri di più</a>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2024/2025</div>
+                    <div>
+                        <b>Campionato Provinciale U13</b>
+                        <span class="badge">2° POSTO</span><br>
+                        Percorso straordinario con solo una finale persa, dimostrando grande valore tecnico e spirito di gruppo.
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2025/2026</div>
+                    <div>
+                        <b>Torneo di Fano (Pasqua)</b><span class="badge">2° POSTO</span><br>
+                        Grande avventura federale con Volley Game e la Sabini: secondo posto conquistato al torneo nazionale.
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2025/2026</div>
+                    <div>
+                        <b>Torneo Nazionale di Treviso</b><span class="badge">5° POSTO</span><br>
+                        Con la Sabini U14 tra le migliori squadre FIPAV d’Italia, Leonardo conclude in top 5 nazionale.
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2026/2027</div>
+                    <div>
+                        <b>Torneo U15 FIPAV - Fano</b><span class="badge">4° POSTO</span><br>
+                        La squadra U14 affronta squadre più grandi e chiude ad un passo dal podio nazionale.
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Categoria 2: Agenda 2030 -->
-        <div class="projects-category">
-            <h3>Agenda 2030</h3>
-            <div class="projects">
-                <div class="project-card">
-                    <h4>Lavoro sulle multinazionali </h4>
-                    <p>Presentazione di una multinazionale (Temu) con riferimento agli obiettivi dell’Agenda 2030 e al suo possibile impatto sulla sostenibilità.</p>
-                    <a href="https://www.canva.com/design/DAG5KDFtus4/sR8LbHO2xdtlIiFchsdQwQ/edit?utm_content=DAG5KDFtus4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Visualizza</a>
-                </div>
-                <div class="project-card">
-                    <h4>Poster: Proteggere il Pianeta</h4>
-                    <p>Un poster di sensibilizzazione sull'importanza della salvaguardia ambientale.</p>
-                    <a href="https://www.canva.com/design/tuo_link_agenda2030_2" target="_blank">Apri su Canva</a>
-                </div>
-                <div class="project-card">
-                    <h4>Infografica: Eliminare la fame</h4>
-                    <p>Infografica informativa sulle strategie per eliminare la fame nel mondo.</p>
-                    <a href="https://www.canva.com/design/tuo_link_agenda2030_3" target="_blank">Vedi infografica</a>
-                </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats-section" id="statistiche">
+        <h2 class="section-title" style="color:#fff;text-shadow:0 1px 8px #134a8f21;">Statistiche</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">93</div>
+                <div class="stat-label">Partite giocate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">512</div>
+                <div class="stat-label">Punti totali</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">35</div>
+                <div class="stat-label">Ace</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">104</div>
+                <div class="stat-label">Muri vincenti</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">61%</div>
+                <div class="stat-label">Efficienza attacco</div>
             </div>
         </div>
-        <!-- Categoria 3: Adolescenza -->
-        <div class="projects-category">
-            <h3>L'adolescenza</h3>
-            <div class="projects">
-                <div class="project-card">
-                    <h4>Presentazione: I cambiamenti dell'adolescenza</h4>
-                    <p>Una presentazione che illustra i cambiamenti fisici e psicologici in questa età.</p>
-                    <a href="https://www.canva.com/design/tuo_link_adolescenza_1" target="_blank">Guarda la presentazione</a>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section" id="gallery">
+        <h2 class="section-title">Galleria</h2>
+        <div class="gallery-grid">
+            <div class="gallery-pic"><img src="https://cdn.discordapp.com/attachments/1341507534288060569/1485417631677681787/image.png?ex=69c1ca79&is=69c078f9&hm=bb92c1ec7217b7792ef3343b6dbf05cfd652f752ce0602c83fd07032f9ca9604&" alt="Sabini in azione" loading="lazy"></div>
+            <div class="gallery-pic"><img src="https://cdn.discordapp.com/attachments/1341507534288060569/1485417048900112615/image.png?ex=69c1c9ee&is=69c0786e&hm=94140c6bed0037274ad6867d4fb3e26a883882366c54f8f5b76a20866cd60d89&" alt="Torneo di Fano" loading="lazy"></div>
+            <div class="gallery-pic"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUUExMWFhUXFxobGBcYGR0YHRgaGhgbGR0bGxgfHSgiGholGxsYIjEiJikrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGzImICUyLS0tLS81LS01LS81LS8tLy0tLS0vLy0tLS0vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAFBgQHAAIDAQj/xABEEAACAQIEBAQDBgMHAQcFAAABAhEDIQAEEjEFBkFREyJhcTKBkQcUQqGxwSNS8DNigrLR4fFyFRYkNEOiwjVjkpPS/8QAGwEAAgMBAQEAAAAAAAAAAAAAAgMAAQQFBgf/xAA2EQACAgEDAwEGAwYHAQAAAAABAgARAwQSITFBURMFImFxsfAUMqEjQoGRwdEVUlOS0uHxM//aAAwDAQACEQMRAD8AtCMbRj0DHoxruZgJ4BjbGwGPYxVy5qBj0DHsY9jFXJPMZj2MZiSThnM0lJC7mFESYncx09cRsjxvL1W0U6gLROmCD+YviZmaSsjBhIIuP9PXAHlOhSfVWBYuCyjUIKqTI+ZWL4Ak7hDAG0kxjAwM4rwKnWvJQ9SoAJ9Zjft2wVx7iyARRgRQXkOjPndmF5G0H8JA9CTvOBGe+zY6WNOrLW0TIjzCRYi0Sfpvix8ZhJ0+PxLsyi+Mck1crDPUAPmbXO5BmJBO474XstU0ExUkdhfqD0x9FcT4TRzChayBwDMH+tvTCsv2aZUVS8toN9APU+s7AWA/0xmy6Vt3u9IYPmV0mcV4Wo5m3YAXiY6f7YP8A4otKujK2pQCQJjVaIJ9CcFeI/Zqhaq1MRAXwhN9Uib7Dygi8yTPpiFlPstrKrsK4VohBEi+8m0D5HGQ6HIG3L1ksSXx6qmcXQgYDUCU20s5jvphm7zBnuBhE5k4Q+XWCBcsVhgSvmuJHUWHT0xP8PP0WYNSqGJ+FZ+ASdpiAT7bYnDNZRqHisH1BoZTfygXsfiMgC8fGfle9z/9Bz5kArpEjg9RhVLhiCNj/KI3na2GSvQpVcu7LJqev4QBJ27jv2+eBlfhYpwCYqVlDeEoJCeJ5lVjOwWN+vth55j5aThuQbRNRi0amIGiYACrue/7YI4TkJINVITUrLJcMqVW0UkLuSbAdrx6G2LYzHLpyWTJ+9MFfwkcFQBFWoqFu4YKSZ/u4AcJ4m2QoKFp6arWZjJkEzEAGTpFwLjEbjfGqmafRUb+GI8QiwcofhSBsJ7fTBDOqdrP0kAszzj/ABKnWzBTJ0j4SDRKqVLA7yR5iJAje04YeXuXc1XpIHZaFJSPDV1FUsGU/D5gFABJAjcA+mFGnmVpuwpMlNPiE76eo9fwnrN8TOE8zZhCunWS3wQtrWHveB7x6HFLk97cwv5SX2EZc79n+Yohmy9VKhZGDK40ETYFIsCATuRt64D8p5jNIatOnSbWdOpYJ2Xc3tAjr8icE8hluKszBkKLmLMbHQQdwNwPN02/wnFgcucI+7UVpltTAeZhYE946Y0+lvIoV5lXBPKfCa9OrWfMGahI2+E73U9Z6z16d2iMbRjMa1UKKEqpqRjzG+PMHKqa48xsRjzElTyMZj3GYkkF8OzXiLOnT2BMmPXtiaBhR5JqN4MvU1G03AAtsLQw9QT8sNymcBjfcoJlkVPca1KqrdmCgkC5i52F+uImf4pTpMqkjU2wkC3ckn3+mBnNdZXyrC0h6R3B/wDVQSCPf88WXF13hDG1XXEYA47j6jGU3B2II9DPSf0wrcL5foVfGDKfJWdFiPhBt09cKPKmVR6qq8KCpJaB0WQBbvFhvgd58Qti+ZbcY9jCxkOX1JOoshiy22/m2/Lp1xseChDDVqo/kKk+b+7APx+nWJ7xNx8Stq+ZK5v4ycplzUVZYkKp6KTME/T6xiF9nlSq2VLVRcuSDEEiBc/OR6AAdMBeecgaeWVWqu3iNBQuxEC/VjfbBLgHJ7ZejFHM1BqAbTrcqLbL5rC/bfChlvIV8QgV27f1jjjIwv0clWJgZmoTPmBkaB/eljft39r4rLPc1Z4V6gLh6YJII1E6Q+kFSPSD88G2Ur2hJh3HrLujHoGFThDZx6FOo1fSGBkwPKQxW5K7GN8QuPczHKMi1c1BcErKrdQY1fBYEzE7wcX6nF1B9PmrjzGPcK3A+IZnMprSqkC1wu59lNv66YlipnJjWmqY06RPvsPL6/vbE332k2fGHsZgE2YzYnzUjFoi57RBvP7HG9SvnVAJWlHXe3v5tvXE3ytkMFBYwJG3p/Un64TOeeSadek9TL01XMATIlfEi+kidMnuR2wcGbze+ilExMGPrr26TtjZc5m5I8FCRvB2/wDfv6YFiGFESbZRnBc6fvFEVfEDUmAgC5iVMgjdQSLjb54K898eq186F1sKKlGRGIAXy7nTvJneTfphg5j4TkjmalXMBqNUw7w7KJNpB0MJPYHEXiHC+G1Hp63fUygLpq/2kCZnwjJgi89sY6YEgHiFsi/x+r94zNKn4aKzuvnQEzqN+p1QL+4w1Zj7NKjeD4bgAghtV9KmSIi5O8k76hEYNcsZSjRipRomqB5FZnVtMwYBFPc2v6+uGUcWqmIy5MiRD7juPJgsWJStvIVPQSsebuSRk0Sos1FJ0mTIWY0gAXYzqO0e+O/KhoGqKjgqaSEBW1KtSBGkiTBjSSDHSe2HviPMxpDz5Zp6AnfePw+h+hxFpcZWtRWtVyfklmBnWsSVknT2+hwbYhdqalbTDfBeKfeE1aCnobyO4MXGCOBfDeLBkqPUQUUpPo8zDoqnbpcxF9scG5tyQMGsPof9MaUJA5NwdphvGYi8O4jSrqWpOHAMGOh9RiVgrlTMeY9xmLuSeRjyMbYzEuSaacZjbHuJcqpQXCuJVQUZ8xBuaZdJZwCQQLQ0GbHri8eG1VqU6Z0GmWRTsACSuowAfc9MUbwlGaqieLEyAWuFkG4nbDhwzn6kE8CkKrPSGhm0syyilDqLHSBPqOuM2KzNmdVHEEfaulWnndeoJFNTTaJ1Ab9DJ1Eg+mnviBw/ilarrArh11So0eGxhgRqsBAtjb7RObKOfanTpARTJYVoIJaApUCSNFhebwIxB5M4e/iP5tRKaZIso1BvW5IH54ph+0ow0P7LgR34dQ4g5qilmFAFUqT5hraJ1WB7de2AvCBVRQy1NJBkEKJHSxInDZwrNKHeJZNXl0uUPwiCyggwLgsdguAGTHlB7/64dVTP3kscVzlv/EG2xKp29sbPxHNkya4P+Bffta8XHYYHcUrvTRSi6mLqI7gm49LA36YH1q9elZqimpJISUClSkzBIazeUe3rhi47F3UW2QA1Uk8z5utU8M1m1xMECAPkLThv4TxR6ig0s1SE7o1OCDEkTME+tpwoZjOVijaKbfDT0/w5nzRUmxG3pj3KIyutMoBrQuGFpjTIK6RBGoXge2+M34TIuU5AeD1EpWXdHnMNmaS+InhuoHnlwHJJEW0Q0k/zW774qavmkeqdSmjA8yqbARMYe62bjKgwWhtBA30t5x8gwb64VRlFrApoDO2s6mVQY9+jXED1tOLZCw6zViybG6Rh4dzlRFNKdKpR03Zg5aSzGZa5kEz+VsBuc6dSo4rOFsFpgASAAWbTfYSxwtZHg48QoqgMWIJBuNJkWPY/K2GLn/mh6lRaRsKSKzkCZJZVMjci4O+Fht6kCOKek4Zu8N8j8SqUKTkIrKzdZUAKT9fi39MCueObKzhRTMAay5p+csPKAt4Gm5sPffHn3ZPCppUqwWlw+1PSTCyJ9ri4n6DM3lmprrKysxrF1PqGHT1xsx4kbATu5A6TBkzP+KChfdJ6/f8AWHOXeajRl2oV5EBmcqFkqGUpBO6nzCOvfDTl+eqdU6HpmmIJktIPZbD129Iwv8u8GeplqjZdQziI1kaZ+diYuJtMbYFvy1nlpOaifwtGosXAE/WSdxYfPAYwh07NdHtHZlb8Sq9u8beIcUoKFr06rkowGlWJBViFI0bDcWMjtgTxfnhjop5eaaXLTIY9YDWNgGM+vpgJwXhFarTqeEkkEMyi5i48s9fTe2N+HcOqtUNEIwqbwVMi15HS3X274HT4C2mZweR9mVnyrj1SYmHB+vYQHx/jparDkBBDSEDliy/EdTC8Np74ncKejVpFajmmBqUFaRYx5WtDCEP4lBvO+B32g8LNCsswrOl1aCREDVA2B7b2xPyfCqlKijtTYK6qQ8eUyoiDttFsFpcC5m2txF6/L6CbkFxx5d41lKCmm1SpUDGYFNlDSALguZ2/LDKOP02UqCCVgiXXWvaBPmO43E7HriqgYP8AVj3wCo510Phfeaqtr3UApEbFY+LVGGarTrptqoYrQZfxCszDpLU5m5hyr0VUVIdHJcMDJOkoSfW8x0AjGmU5ky68LFMsQwUg6hpHxk/EbRH64UuKLpdhOogDczMKBc9z198ecApkquZq7mTSUCyLJUFR0Y3M9AREXmajGMKK99RL0rHO7JX5TDD5fN5olloVDTLFizRSpgtuQXIn3E45Py5WFgtJidlSvTLE9gCRJ9jgllM7Wr5dgrt4Y8xBMz5gJm/X1jAyjl6+ptUBZEddQm/sYg7b29cYwzHoJ0DiQdT/ACnnAuIDI5tC4ekWYJVp1BplTaR0bSYaRNge+LijCPxuh4uQqrXVXqLTY02O+oCVk9wYxpy19ovD/ulAV82i1RSXWrapBA623jD1NiZciUY9RjWoDFt8e0aoZQymVYAg9wRIP0wC5rdkVWWu1OTcTaALwP63xGPEBRZk7hvEBVm7W1CGEHyPob5BgR8sT8VXyt4lXN/+YqBJXZiuoMzMRYjdhv3JxaBqKoUFgJIVZO5iwk7nA4+BUJxzc6YzHhqDuPrjMMi5SHJuSDZpC7LABKhXHnNx2kAeYmY+EjCnztxZfvuYWgqpSFRl0JIViPK5MROpgThx4RXOWbxANRTXII2Ls1p2gea397CHQ5dq121PUpUQ7Elqrad7zABMHoTAPfrg2KILXiOCux97kwQKjAgho9rfltg9wHNV6z6PGZBvCnSCbAyARq8oIj1wL4xwqpl20sQy3AdZ0kgwQCQJIIvEj1OIVJyLgkHuMRWBO6UQRxHji3GGymYIpVmYHQ0xpMzcLB/6frh04dUBpKwBMiRHvPfvimaYZ6iDeBNz0nFw8sVA+XSJgSPMANjNoJtJwLMDwTzLCnrXE2zOZrQdNA++sT+XXCdxvIyqMQwaWBmZMERMqDN+2LD09JjC9zZTcrT1FTcgESPXbvIGEZGYIRFahFKFu4nDljl9qqQSsMetTw/L0mAZ674k5umuRbSzuhMxbxEbuVPT12ws8LeqlQEtTVSjAFgCdQUlZkEQXge2C9NaldVFZ6SuCVBWRTmAVB3hjfawgbYyEdwY7Lphj05KWCB9/wDUmZXmAD++ptbybbXl4nuQMNubyWVVNQWotZheWMD3sJv0tiv6fCXXMU6bg03LqOsMCRcFZ1DDln6wDM7kAKNPXeex9Y6Y1YGY9TcyaRncNuMGctcGqjMnxTrUzdT5jM9T6xvPucdOJcApnNMKmWqVda7q+jygDaN2mDv2tgzw2vpYWknaDED2vgpmEq+KhFRVVY16jAv09emCZFF7Z0t5PLc8RH4nkNa0h4VRaa1ERhUuwHlRQW0jUIEgxNjv1LZjOqJDQgAtaygWAjttbGnP+ddYRYM1BIH4kUEg/IlT88KXDuKgv/FD6APMFNz2F7C/6YScuxtvWdLB7OGTAc5NdZZfL/FVWnAUFCLsBA+IKfL0EXnEbj+fSvl/Bo1Pive20eWN4tc+uItLjuUeiURWpGNzcX2kTthOy3FaijTJWZtaQSdxF8F6ydDE4fZ+XLbY+olg8g5AZVKtSqRB037b7et/zwTzWYRj4yES1tcQSFbY+wOK/wCGcTVwUeuynTCipOkGBebxO8+oxMyOdzQqUlIC0Vc7XDE020kPsy+WbdYxYyIppZlfC5JZ+okTjlShWeq9VUqS40ErMMV27gSMN68VTwKdClFRQAlVVUsFEAGTFovHywoZniNCrVGkppm/QythExJM2PpjvkeblpEALFMGAqKSxP8AMSRBBP64Y+QKAe8WuHfwekF1sv4bVA8laRbWRAkKTsTaTH54Wc3xZZLhVAvcxsTN+++D32i8Tp5mjSq05ViSriCoIIJWRABI0m47j0xXVHLmo60wd2AAOwLECcaM+Y6kKelTLptONKWHW5YfCNGYVWSoTLENqHrJ8w6TIUETAHrDLwBAcuix/ZzT/wD1sUB+YAPzwg8xcHzWSoqGqqyAgKaTEQbnoBezevqcHPsw4gHpVU1MXDydRncbgm/S/qPXCszlkAPaN06KuRiB+brHrh2ao0dQqA6WQrCj9MHcnksqpUkjUbgOwnafhxWnGaPFHrCnlVpOrbM0alPYgmPmAcMHLfCcxk9Rz1YPWqDcRoRR+FQFWSTcmOgA2JObnrNRq6F3C3OVZTQqJSMVGXSvaWtJ9pn5YrTmLJ5VAtGlQ1BVAeYLWUy+oQQe/wC+GXmM13dfBB8JWL1a7eVFVRAUNBlyfwgE26AzhPyPDGGYUFndg5IbVEydz1xZNSKgYS6s5zDlcpl6LVakBqaaF3ZhpFwO218KXOHG6GbGXNA6v7SRsROizdpg39DhW+0+gy5ijRMkUqKJqf8AFdmJE+rR8sA+XmKCuVADikdIFxM2PYYNmPSIXF3EfOXl8Os10Vop6C+0gubL1AkWGGzOs6GkWamFGlmJUyGCrtfa0R6jtijWz1eVqBhJPmXUTqYbmDN9MD5YN8G53ZL1UqP0PmPlgaRpbcGO2ImQASHFZFy1RzBlFsa7W7KsfLy4zCE/PVFjLBpO8gH/AOOPcF6i/wCb9Izbh/0z/uH/ABm/Esooy4qdajTGre2/0XClmsyKNF6jqXqkwmoyBJuzDcnoBtMk7YLV85RWxqoLnpaPpt88Qs1k1cmk38jQR3SKnS0kKRb+bBuu7rFqSl1I3EKGTJpV0zBeoTJXxFWCPNJXRqHmmRPzx3qcZyJX+PlMuTNjTDUz82RyTf0jCXRzQCFdCkn8Rv8A16Yj4WcXxh+vx0EfeD8dyVM/wcnQ8UkhS7PVgdLP1gAmIw7cEr1KlLU6qGnZAFAHS3TFNcDreHmKLwDpqLY7ETBB9InF3ZLZunnaR2vt/XbFentazBOSxtAnZUPpgFzk2mmrGwWZkgXgwB3OJXM3Evu1HWvxM4UfOST9AcI/MnFRWVACSDJM+0Ae+8++AyN+7N2l9nLqMZZzx48yJls4KnxW7AExE9MMOQyOqjqZgoJIpkmxIi3rO3ywmZYgH6dYAw3cKXzI7uarLGjRCqkTYBmWZ9r4zsKM6CaIOCjgbfv6QvwHL5hKqK16Y1GDDpOkwR/KZjscecU4c9VgwdVtpOoxpaSSYi8yNiOmIuV4yBV0oSAQTpYFSDcxB6b+m3bDDmAGM98Owk9usw5vZaaUe6bUwnypQDO7lp0gBR3i2r6yfnidxZr6fWfoI/Y/XAvhdc0mkdo/r6YkqxqP6sf6+gxpRaHMwP14ifzpUJr0BMnSxPzAUf5cBswbTH/GDvO9akmbKkhQtNFk9SZb63GEnmPiiKVVATuTJn0HbsfrjA+JsmXcvQT0q63BptCMLm2YXXi/P1hPh9YB100wDETM9SZiex/9ox1OalyqD/F1Pz9cAchxhBUTUNQIIg3AJECR3m46yBg6+WpB9SEht9BIuQZhSdvn+WCOFnFmZdF7Qw4CR57/ANIzUCqppCAgADzX29dsAG4g9HNKo1eHHiaFNpgqYXvqmPTENeeaS2NKqSLX0Wj5k4hNxDx83QZBBcIoBPw66jKL+5nGooNt+Jxzl3PQ7xhq8GOacNQzDo0SmqiVVehHiKTBmbwb41zWRrUzpUgOhBlYN4kRv6H6YceK8GyuUoLmKiCtDDWIhCdvh/Fe0nvhP5xrvl6jVqfnSsA6mYAJiTEG0Rbtp2jGcoziwY05xiAJHB4PwgvmDLZn7qJVmpipLVIkIVUwCR8NnPpbC7wtdNaiQZPiKZF9iDb6YvT7PA/3UloUltgZDWE3I6m2JXG+W8hUlmoU6dTUCKlMBCGPUgWb2Ivixm9M7DFOhc7hKo5840KuWRWprr8S9TTpY2a5OkT7R1wsco1qlOqtQDyagGJsIBmfUgibT7YK85UyFpobMXIi24Gk7dQWjA12CjStgth/r746mj03rnk0BMWXJs6R5XnSn44pjUFMgVJ0gtMbbhT3Mb7Y05l481Kn5bMbKd4J6yfrbFeViSTb88ds3nHqBA34BEmTPr74mT2YozKU/L3j11x9MhuvaPPAeZa+ZFPKOV0gNDxtb4mXZzJ9N8M3DOXHZyqFajE3IOnruyyBa/0xXXAKlSlTarpJIsg07gkFoMX+Ffzwe5I5hZcyUmNTPBm5JNrH2x0s2ixZE9wUZgTPkRuvEm/avn3evSpVApaip1MBYliDAJnZQvznBnkzg1Kvw+m5qLS0GotQFZ1SxYHcGdMAe2BfFc1Qq1VqOAQGYMGBGkz/AC9RJN9rYF8e5sahQNGiy6mMuLeUkSDt0WwvaTbaeMcFNzOjv3DjiuZzy/DFasaZdfihZtJYjTJ6dMdeYOAtl3XVAmw0HVcAA23ta5GOfIeSLBKrH+Jq8hm42g3sD/rgzzTVGbzOum8KoK0zeDpN7xeSC2rrOMzadhZuPXUAkAiCcvw8KoBI/L98ZgrS4RYa6o1Re3+4xmE+i8d62OAKvK4LTrqQDEHTIvtIHfEHj7mkogsNJMSZMgdTJMzvhiZPNGom230GA3MnBa1UeRD/AIpE39cdNiifCc/axEQhOPNWCeQ4FmK1cZenSY1eqm2kdWY9FHf1HcYcq3DstwtQw05jNTHiMJp0mgmEUyNQgnUZNrAbYzvkC/ORMZb5RIo5SshVmSogJBDFSo3sQSI7Yunl6oTSDTMgEz3IwpcL4/mtS6nqtUZGcAkQwE6l0SYP4hqGymxw5ZCodVQFVGmpHlAVSCqsCB2IYH54rcx6iXtUflNxW+0muf4KdIZj+QH7/XCRFhh750emaoDKJVIv3JJ/T9cJ+dy2jSIIlEa/94T9Jt8sZXb3zPRez3U41T4H6zhliAwJEjtg3S5gKmCsjtiLwTwhJqEauk4l56hSqjyMA/Qd/TC2IJ5nZxowS1Mh8Q4krVUqU1KkAgzGHFa3lUqbFQQR2wp5fKq6NUCACkiEjeSahQkz6fthlylELQpELGoEx85B9LEfTDcJpwJxvaGWwU+IP6SYuacfiOGnl9SV1nfYfvhQRSek4dODiKVO0WH6Y3MRtnn26ynPtKzeriFW9tUe2mF/+Jwr5ipqJPc/l0/LBbmyg9TMV6toNRzv3YnAMnCMbCuIerBGU38v5cRk5CNAZtDmFLJIGkXJJkC3Xzabdb4MfaRlQlbXQoMlGYR9BSG0kEGQJBMETeQcJOToPUqKifExt09b+lsOfGmJVso9aC2iJJIFwVJEwF2m1oOKfJtIEDHi3gnxE7iF6hJEatJPoSBP5zibwT/zdNQwIU2JsCFBfBjivBTQKCqadRtJGpbggG3SRY9e2DeU5Uy60KOcQurwJWxQkyptEjr1i2KOQMCBC9FkKk+YZq8RNbLmhUJPmJn+6RP+Yk4hcFX7xQqZKpHiUpNMnqO3tf6P6YjJVipA6r+h/wB8cc67UqtPMJ8SkA+o2v8AUj2Jxk0+SjtPebsuJcilT0P6HsfvtHHknmBUoCi9mpkhhB1GNj6/7HEfi/Mvi1qQpGApklhaZsSBJgbxvbAbmIBHTOUv7KsPP6HrPqN/k3fAla38cLuSth3v+mKzKQ1zPpWtdjfmXgzn9ov/ANQRbxBq+b/7gDE7xcqTbvG+FZ2vhg5zzpfMUnK6mZPC94eRaLHzgY7cw8omjRaprWwBjSQdwPa047Gj1fp4wu277xOTSI9tvAI7UfrFlox7TMGYBjoZg+8EY1W52x62O8DfJnJjPR5qUUkp6NOmfhAjpteYMddvzwv8OzTrVFQTIaTA9b+mODC2GzkLhdGtTc1FJZWgSbXvt3xi1LNpvfxjkzXplx5TtymgPEl8TrI7LXDN5t0kMobTplo2EdZIBB74R8zQDVmUQJMyTA7mTHv0wycy0PumcGoTQcBtIhZEaWHS0iYNr4XsxXV6zMi6UJJA6ge/1xhLuAWbrHZPRLAY7A8GPPLarToIQdcxOkgiSsRvP5dMcM3xBi8+Gwb4YBbSRE/C6wpt0sfWcDOXECaCJ8o1WiSSIi9r6sSM3m/HrMuVpatKk1GJ03Mgx63IMyD+eEIxYEw2AWhMy2dphQH8QN1ALEDsAe0RjMAl4yn8gPqWMn3scZgqMCljNxHOq7BaNXzzdkOwkTDbTttjanxB5E5moATFgGuOkDf29caZblvMpTcU0V38RGV1dSCqhh1MidRtGOudp10A/huqzq06SIMd8Ys2QubnTw6egQw5+M9yOfqUK9akKgDMIJjz6VYgajFt9h36YG8UyVYJXp1Dr1GnWWBdY1LB7eVj6XwT4jwmvRqrmzQFWg9NIZARACq0sIlTa5IIN73wvpm8xmcw1RGZXMglfwptpPdYgQd8OwaffZvtMubMAAoHczfh+TqUSzCoADpJG3wsGk/O3zxY/CK5caiI8qx6i+m3YLC/4J64Qa7aKhpuhDD8QAuDBB3tE/li2svy+tOlqWp5WiGMQCoN5tYyR8hheNcm4hpeo9EICsrLnKTXq9/KB/8AiIwO5nkZl1P4Qix2AUH98HuYgPvtLqC9GfXzgfoMLvMWa8TM1GG06b7nQAsn1MYUwq/nOj7O5yg/D+0GNjeg0XmCLj3xqcYikmACTgBO33jpyplhVp58ADzZcMvpLyR8mGOnCAxpDfcR7H/jEPljNVcpL6SUqKaboRLDXEMkb+YLb3wSoZkU0RKjgVBAhvLEbCT1g7YtfzCcXXArka+9ff6QplaV47YaqVIJSBI2En5CcK3DWD1Be0yTuI3P5YMcU4wFoVwFsEfS3up/1xs7TknlgJS3GatmnYk/rgDgnxlrge5/PAw4VhFLcmra8hm1HMNTYOh0spkHscMNFnr59UJ81RUHQQTTDewvq+uFlsMHC+Iomfo1rlVNOelxTCH85wZUGJVivIMO8e4OcvUp02bVqUta3WI/L88S81xCpTymXUqfB8crr6X1iDfoSDJ7Y7faFmk+9U11CUpX92YwP3xt/wBiGtw6qXMhUqPSUfzAEyfmNsLCdRXBmlslgEnmRa1AJUWpNo0memqIP1A+uOfM7EZdyCQQViDG7AXx04E/iZdA9/LBnqJIB+kYgcwVIpPTqKwKwVYggECDfpMYxhWDiuxozQzKUPxFiHOA1FqLWyTMGV0FSi3qyhx7e3dW74F8CyuoNVfakNABm7AkEbbi30xzy+onLtTDDRpBcAWWADuRO3TucM9QCvUTLUAKdOW0gzvGpmN/iJBPzweRyRK2AuH+HPx8ffmIXFQKuboUgY86KT2LuvT0EfXD/wA+aloEC4O9unU+3fFXcEr/APi6LuY/j02Ynp/EBP0xbvFM7lq+hAy1ATDD0gn07Y6OL9mt1dTASHeiauVO7Y5nFg53lKif7NnX0Klh+k4FVeT6gO6QdtUr+VzjX/i6k+8sf/hI/cyD+II/vFQHDn9mbAtVQgWhp97R8tP540Tkw7mogHopP5mBiVwylTyFUuAzhl0sYgzIIibafin5XwTa9c42KsTl0a6Zd5cH5A/WRvtYoqr5ZgBLLUHyUrH+Y4REtJkfCf2w8faFx+lmBl1CVRoFQkFkA8xS4OhpB0nCVmtIpsQpWYEEyf0HQzt1wrM1JtMRipjuXpD3Cs8i6Q5gGkT6k2sD9fywBGacMxVmXVOrSSJBMkb7Y71aeqhTbqq/UWn6SD9cDycLwEbKh573ToGHdv6+ePcaacZh8z7jLEyuaei/hsfL+EnoOl+2CzZ2qXVQzRE2P9WwPzZFREKzqKzYxFpudo/4xvknBKkMT0k77E3tjgcz6WmTHkJAomr/AJzzOpmlqaqdR2sfKx1ADqApNvYdPfC9kqgy7VNI1a+kxHpIGHp+hwH5h4WGug82+kWncn3bbDMeZ0PBmbLpNPl/Ogvz/wCQZT4mrsv8JNIF1aHEzMiVt2we4xzSaqKiqEvYK5YA22BFpg29fbC7VyJRKZIgkGZt1EfkcZQy5E1Z8tMqTYkm+w9YwT58mTgmC3svSYsTOE5APc/3k/ioevUpaaTqzqoQG2oyYKmdrriv+IBvFqaidWskn3M/vi2+CIK1BvE8r5dg2WedLm8kQfiCkLiuudMvpzdQ380NcyfML37apjsIw7ESSZ5LOAFFdRAUnufrjwFv5j9TjCcb1KZUlTuDBw+uZl3N5hXgNcqxeQGWSGYydUEKBJ7++GXjfMtNsxRatSnTJqFDc+UqpINh5jhXylCDl3ZTpaqu9gwDCYPWL4sX/ujlGMmidRO/ivv9Y6YVlxruBMfjyNsIEQTnWKOKT+Y6NUjTKwZC3kwwWSBthl5AelQNR61VjqAGkajsZ2Ig9txucMNLlDJrfwJ63q1f/wCsTa3BcsSWGWpgnoGqAfQPAwNqBQlUxNmVdzMoLM62U1GIH91ixX8sL5nDZz3RWlVFNRAI1adwBJgAkk9+uFXBY/yys1FuJ5NwRaPnfvjplxLrJ3YX9zjWCN98HOVcotWoFYSUZXi91mGBIIi+k7zvg7qKqSObKzVmLxOwLW1GBYGAB62Axtks3mXy33dagVCG1SyqbsSQLAkGb33JGLAqcIouulqSlQdtdWAfbxMa1eBZUgE5WjYWnX1/x4A5hVRgxsDcW+H0wqIiVLoFEqRMrH7jbErPZoAgsfMTM3HuSBP6Y48xZJKbKERUBWYWYmT3J6RgM2MbId1gzcmWlqpOznE/K5RhqtE2JJtMQJufXE/htcZSrkqzsxV9bPtIJFv83XvhbzAOkTvKz7yMHquURXynjDVSdTIDETKxvAIgkXE7fUgsAZizkdtpirxjhdWlmgWpaBVqeJTXUpmm9QlYZZG1vlh34rw/7uErUywKsAZMyDbt3jphf47NKpQZTrVD5JkwFYEKSQJ94m+GSpnxXy7VAjFG8p/uVB5t9juDP9DSMxBrsZmGFCu/uOnwk3K8UqEX0n+vnjua53AQH2H6wMDsrShRjGr/AMVUmNSOfmpT9mOCbFjvpAXUZaq/pPc3nKnePbf63P547cuZOmxNSq4BfbXPwqYkEKYkzc4jZpYF/riPR4stJKtVzq0KgCoJ8qz+5uemG5Pcx1jEHC2/JeQzz7R8jSSvl6ldm8J0bSE0sCVa/mU2BDL0vHTCjxvJJVQ1qJIpoVVrR5n1FYBjorT7Dvgv9q2X0Vsv5zDUA0fylj5tuhM7icTuFmkOAOpZTUerKqBBBWrEnuSs79APXCd7bQTGUpcgRFqVCFCQdMD4twesEdDfviN1wwZeBQcdTUTb0Dzf5jHM8PPh+NIjxNEdbrqmO0DBrnA7Sm05PeB5xmD1GvUUAB4A2AjGYP8AFr4gfg28x34dSKUpvIWmBBIJMN5Zg9A2/rvtiRwXhj1Wp6ZFMIS1VvhWIG/U/FYfMjfHq5eouXWppUI5IkCXAv5DuIiQI3AjqQS/DMtVOTzHlcKPgkHZYqlR6Ek/XHLxU5JnpBlOPGc+OhuNeSJDzQpgfw2Z1/mZdE+wkmPeOlsQc5dZ7W/IYmqPLGODpKEe/wC2KPM7WAbAATfxMEV8wCURgYhpJ2NwbHuIxM4PkFrAUFYBqrWWYJAvN7bAn5YgV6GpQSYgn9pk9OmPOT+KrTztFn+HXf08rD6XweMe8IzW0NM4+B+hjhT5Rp0lFU1KjOq3GoaZIg2iRues4r77QsonjU3ZioZLQNXwkz1BG4w8VeOMxcKCq1DOliCF6+QADTtJEkSTgFzFTo1EUOodhME7qOsEfLGxbBJngqsASscplGquqKCSxAt6mMFucOHGhmnXo0Mp9CI/UH8sMPCKKJWpwoC6ugFzePzw5Z/KipTZTeVkW67j9sAM5PNcRjacL7pPMrGtnPGo0aVKi2oMIAvcLB0xfzE6jPUYtDKVWair6RqJvCkgDVEhZk2wt8LoL4lLoNa3HQE4auF5dqVNab7rIMf9R2xYzK69OhlPgbG9XwQeZKyVEsgLQN+kdYBg7SLx64E0czUJWWpsGqaNIEMB33/bBlfWYwO4XkhTU6lBeSdQF4PSYnFoyUxIiXVyVCn5yuOfcrUNY1gs0j5AwuBpJse0zPzws5LKGrUWmv4jc9huT8hOLF5ootTUqp8jtOk7qd7dIwL5UpE1KhWNYCxItBJn22GKbKAaHSGMTFNx6wDzTw9aNYaaiurqGBHT8MEdDafnjflHNOlcBADqiZ2AEm/zjDJzPwxRTL1FXWWEaRYDqO99/ljpydk0KVUiNRXaxAAsfrieqoIBk9FypYRlzVCrRXWaiuBGpdIAgmLEXtgr4SkdItv/AMYGHI1XhatQFOoUQWjuZ/TE2o/ZZ9BGKyEEDz8JWMGz4+MW+bqCKFIYapNh26n5GPrhSZrgeoH1wx80uxjUmgCRNiSTcCRtt+WFnLljUURqM2Am/X/f5YXQjRfSEHVWrHYrqm/ttB9Z+mGPl3LmvmKaMSQs6YhtC7GAQQBt0jCxxARoaQ2pZkCJOozI7jribylxKpSzdBqcQ9QU3Uj4lfeD0iJ+mAbGWawYW7YKPXpD32k8tLQoUjT1t/EMgmYBU7ADaR+eOGR5falkqVYkjxPiTtJYKY9RH1GJP2ucbrUzlxT0wSzGRJtAAidrm/XBt88Dwuk9UAM9OmIAtqsQQJtYTjQqEUYh34IgRzA2wIzLE5mgRAjxJkxI0iw7kmIHWDiS+bJ7R9Tha43nHWukGVTS+k953+lsObgXE4+WoRuqbGbYhZgVSNK0VcvCQbag/lN9ticTDDAMNiJxt95qUk8VF1FLqDcSD1E7Df5YaHIHEVts8wV9uGTZa+VckEmgVIGwNNrx6eb8sFeacmMnwLLUzThi1PWTGpXcPUa/UapEThWo8RbPZ6M5UZhrGnUYCKagkKBAC6Y94GGPnOiKbOranDSyMIjQfEeG/vBbT7d8ZwvABmmxyRA2Qy1F+GCoGh1zP8STGkGmdNjaLE/PEdKAWkwYMUL6tXchQCBG5Er9cF6HBWo8FNRyJeutbeR4bIEXbrsY9cB2rEUBqYBfFZZuR8KkEAX2GJSwrc0BOqcPQgEEwb7jr7jGYEZni7U2KNAKmIEkR0I2sRB+eMxKTxK9RpZmR1fdmoPU1AgaXCidwb3g9rDY4i8uZ3MUlqUXa41FbllZXEWneCO1rd8QOHwDpo1x38N/PH/SZDafrier1h0R/aUPykkE/MY466nEhq6+fE6QLFNnbr5gs19dKnuCRchiCCouLeuI3Ds+UkPU+LbUSSP9vXGgpONaOsE1GYD+65Jse09emIdfh5Vjr3adBnY7iffb540WDyDPVY2vEjV1EI8WqQu+5P0if1wvZZz4iEb6hH1xzqFgTqm02OIwrlPON1uPcXGG415idZnvGRXYyxqanYgq1wQehEgi3rjlxej/AA9VrR+sY3pZkulNmXSzKmoHfVABkzuTJ+eNszBRhAuDH0xqycEgTxePsTA3DxNamB3P+U4cqbeogf13wn8BX+IzbgLHzP8AsDhjSt7f18sZUBqasjWYC06GK9VP6XH5YZVRqkVPEjUqnTJiZBPX3GAvHKfmR438p+hI/fB3KDSir/Kq/oMTHaMakzEOguaPRiC1XqD6QFMj9T8u98cgEClTV6rcSPhuT6k6TJ2t9ZWYIbymO/0xCzFNN/3NrG29hc29cag1jmYilHiL/MaDSD4hZgQCIgXWfrufniDyvQBLFjAJCi3XSSb/ADxK5hzCLSb1I7kkiAOp6DEflt0FIG06iSfnb3tGFstvccGrHtkvmSippk6ySrbH1N+l7Hf0x5ynlQ2skkfCBHqDP5EY5cbrL4TzGxv6mP8AQfTErlLMjwgZgMSdu1v2wLKdwMtWGwqYzCgsg+axJ+oA/TG1TT2OOf3gfzW9scq+YH839fTF8nrBFDpAvNKjwpi4Iv8AUfvhX4MoNZJn8WxgzpOxBwx8fq6qTCb2P0Iwq8NzAFZbWuPqDfF7ZW6FOYKQU09IhdJHzmTfvfHPhWUNQjSwBRlYT3AP+uN+P1QUW+x/bHnCtPhyW1EnUBFgyzpvuSZa20R8iVeYLtYhPj/Bs7m3psWoswGnzNpEXN5AE4b6tKsvD9NZaIMqoFM61VQQBc3m354gZFiVBggmPljTmDiGimUC6iym21vTrM4JTuYCCwAW4utTQaWiA239Thc4tAzThjvTWD7/AL74YKNUVKAK9Phm23T0w38Hq03oKularU011V0alpljAXzDzOYNgOmNeS3TmI07DFlBixy5mNVHT/ISvvF5/OPlidmg9ZHoUrHQb9yBOn0LbfPGvFM6grgLSWiAolQipciZKrabi+CfAGXW1pJWE7Ak3m//ADgUUDhpb5Pf3p5uVQqOuaVSSrBtMmxUgRB7ERHyw0c18ZqZjW+kgM6DTNiBSIPnEWJvE3jDLxb7OMqzu3jVxUZiW1+G4JJkmwTcmcRKnIVQUdC5inZ9QUowkxG4npbCxQhm+0D8Q5hqPkaeUIBWEE9dKRA7bxf0wv5Yhi6sDpHWbgmW+Yvhkq8m51dhTa34Xj9QMaZPlLPnWfurkE/hqUyTYDYNJwjIDZoTqac4gqWeRcH1M9lGjWH1BVB/hhvhUKL6h0AxmOVbgGeJOmhUA7FL2t2xmIF4mPIQHNeYwVeA3lKmkTIsSy+xm+5+uDtE2uZ9T1xDNeMbU6048plyZMgG7tN67QbEOZHKrVlCASwOn0YXEfT88CM21NEJrqGUbeUkSNpH4T88TMjXZWDDoQfpjhxDMzUdlWAbkbiTv+c4mlzviahyPE14dW2LjtK8z1adTdWO3vjfgSa6yJElmUARNywGC+eydJ3J0Adz8InHfgaZOgzVSzmopU0wokBgZ1EwNiB17472PUB+gMJ9cjkg8dZJ5oz33fMVKLA6ke56kGGBPqVIPzwHr8x6VJhj2m1/rhxz3PYaWGVRqhH9owFjsDpubCPxdMI/H8/WzMB6pIUyqaNKz3GlYFu/rjctk8zz54nTlzjD/d6qaNRVg89oEEkxYXi/6nEujxmqfhp6vYzb5DGcqZqjlkqLVoePrjcgLbppIk/P6YMtzPmq7pSyw8EEwEp2M+rAbdbYFuDwIQNjkwNnuI5gpJpFVDDzQbb9wJODWXz+bzBAppqYASLEkfzWAEf17nc/yZm6qaqucaq4nSltO477kgReMd+WqDpUUNTZCpIICnTHXzkAAT7/ADxQZaJ7yyG6dou/c+JttRI6fh/TVI+mIOeyufpqWqU9Kj8TCB+t8NPNNHPLrreMfDBsEYrpWbSLel5OE2vVeqJqVGb/AKmLR7ScRWYymAEUuIZqpXaILQCY2AH8x7f13xO4bQqIkI4B3JYgCeyrvgrS4UY8lNyGvZTB9R3x2q8OqIQroVJ2UgA9vh3/ACw3dFVAeYWpUBViT2gdfUbkYbMlwOo9FPuz+cx5YA1QLi+xAA7bHDFyzyTURlq1yykXFNWAP+IwRBEiBeCcHszwuhlBUzVGgzVYJ0h6hkk3tJHzA2GFNl7CMGPuYkrypxWb2/xU8bnkniR/9RR66lj/AC4l5vn7OGQqU0G2x/don5dMLGazdarerUdxM+ZiR8hMYg3ye6JF4/Rq5Z2p1KuphuFgjaYnSMLaZw+KAoi9yP8AjBvOcMFQ7kW6H/UeuNaXD1UQo+u/54YDxFmQs7U+HWS0mBgjks0UUAKdyfNIJ6e0W/M45HhdSpUpimuo6rqCASB2m04uDgPDEWlqzlClTYmyvoJAPQk23kwDbAOwUQ1BMSuEZ7MOCUoVKgWNWiGifTeMe8ferUUAZauKgvDLosdyCdz7euLCyWYylM+SvlqYnanoUkA7EkmfoMCc7nhVqVHEafhQg2IE3n1Mn54mIktDagOZV9DM6wVDAGfMCIaR6bH3GDvK1SvSbwkq6adUFmnS1wCAT6zFjB2ws5fg9UkFlKAbs3lj98Wryxwjh2ZyqwEqsvxkkhg14JE2kXHTDXz7RyJT6ZQ3umK3MOQYnWVSWO6sygnvMTJ3xx5eosKqUnlqbsAQ14BMFQw3BEi8YLfaBwHL0KK+BKsbka2JC7BgpNr2nAPkPhJzjOkjWsaSwsQdUyd+m+Dx6jdwRFvo6T1FPzj3zEirVR6qg0yrC16dNgRpWBI8qACdpnAhKmpX8NitPxB4ckrrtLKrbhSdvbBX/sTPi3iUwV8uhixIi4OsEiCL7WnAjjZztBR94oI1NralbUJ7EESD+WJ663yPv5eYr8OwHX7+fib1c8fCV6dR1OsIQSGuWgySDMdDiR95qtUNNWWUUFmZZkttCgiLdcL45hTSEaiQoIIAFgRcbH9sdcxxrL1CH1tTeIkWJE7GRBE4LdjP6wdmQc/L4SZmOZTTYpUTzrY6TY+om+0YzA3VkjdiXbqxa5+mMw8HS97mcjVdiPv+ECZd89WMU9FzAsB+rYOcM4DxM/gpED+YgfmGP6Y8xmOLkwYqraJ1FY+Y15LlquQBUamvfQWb5XC4mcc5ZNdFVXSnpmwprB9+s+pnGYzGZNPiVrCxu8ngxB49yrUy5BchgdmBj5Rv+2IOS4c7krTEkXNwP1Ix7jMdFD7sSRzCdDlTNubUvmWSP804MZP7PqjH+NUVPRRqP12H548xmBZyJYURiyvKWUoqAafiMfxP5vy+EfTBvL5Wmg8tNVtFlAgD2GPcZhVkw6mMPePffHMqDeLx/wAXxmMxUua1ArKVYSGEGYgg7yO2B3/djJ2mlt2JA6+vvj3GYsGpIUrZXWhRXempGmUIBA2tYxbrv7YgcJ5boZdzUQu7kG7EHqCbaReRjMZiwZUKrMk7ntPTrjGqmAcZjMVUuK/NnLTZgh0ZRUG4Isw/6t5wt0uSs2CLJH82sWHtGMxmCVyBUEoDzGKvyNlyolnmPNEXMb7YzL8h5YWZqhA9QJ6fy+2MxmK3tJtEUOY+FjKZkLSqMLBkMmRPqIvIOB1WqzGXdmPcy2/uffGYzGheREnrNNIjv644BXUfw61RJ3AMAeymR9Ix7jMFBkd6DMZqO9Q/3mkD/DYYPZLmXNUlhXXaJ0LqgdNQE298ZjMURfWWDXSCs1UqMdbMWbrqJbV3BJuQcH+Q81l6NSoysyuVHkM+W52YAgj3xmMxG4HEJWPTzLBpcyUa1QU0k1ikkQQNK2Jki5lhifTqq6wRqBHUb/LGYzGYmzcdXEh/9lZYSfApW3IRbwe0d8e5rK0K1PSwlGAA3FukdsZjMS5JUfEOHaarrpI0sRBMkQY3EA4zGYzGkGZyJ//Z" alt="Vittoria Campionato U12" loading="lazy"></div>
+            <div class="gallery-pic"><img src="https://cdn.discordapp.com/attachments/1341507534288060569/1485416643017576588/WhatsApp_Image_2026-03-20_at_06.23.08.jpeg?ex=69c1c98d&is=69c0780d&hm=44dff7b74b2ff6f80ae5392b10960ade8fe8202bfece449acb7d8b81a2c8793e&" alt="Squadra U14" loading="lazy"></div>
+    </section>
+
+    <!-- News / Media -->
+    <section class="news-section" id="news">
+        <h2 class="section-title">News Federale & Media</h2>
+        <div class="news-list">
+            <div class="news-card">
+                <div class="news-title">La Sabini U14, una squadra di veri 14enni, campioni provinciali FIPAV!</div>
+                <div class="news-date">12 Maggio 2024</div>
+                <div class="news-summary">
+                    L’intero gruppo ragazzi, tutti 14 anni, conquista il titolo con prestazioni convincenti e passione.
                 </div>
-                <div class="project-card">
-                    <h4>Poster: L'importanza dell'amicizia</h4>
-                    <p>Un poster creativo sulle relazioni e l'amicizia tra adolescenti.</p>
-                    <a href="https://www.canva.com/design/tuo_link_adolescenza_2" target="_blank">Guarda su Canva</a>
+                <a href="#">Comunicato ufficiale &rarr;</a>
+            </div>
+            <div class="news-card">
+                <div class="news-title">Giacomo Giorgini: l’ispirazione di Leonardo</div>
+                <div class="news-date">24 Aprile 2024</div>
+                <div class="news-summary">
+                    La passione di Leonardo per la pallavolo nasce seguendo le orme del fratello Giacomo, atleta affermato con dieci anni d’esperienza in più.
                 </div>
-                <div class="project-card">
-                    <h4>Infografica: Social e adolescenti</h4>
-                    <p>Infografica che esplora il rapporto tra adolescenti e social media.</p>
-                    <a href="https://www.canva.com/design/tuo_link_adolescenza_3" target="_blank">Vedi infografica</a>
+                <a href="#">Storia famigliare &rarr;</a>
+            </div>
+            <div class="news-card">
+                <div class="news-title">Secondo posto federale al Torneo di Fano con Volley Game</div>
+                <div class="news-date">02 Aprile 2025</div>
+                <div class="news-summary">
+                    Bellissima avventura di Leonardo e compagni nel prestigioso torneo nazionale, chiuso sul secondo gradino.
                 </div>
+                <a href="#">Report completo &rarr;</a>
             </div>
         </div>
-        <!-- Categoria 4: I problemi del mondo attuale -->
-        <div class="projects-category">
-            <h3>I problemi del mondo attuale</h3>
-            <div class="projects">
-                <div class="project-card">
-                    <h4>Presentazione di una multinazionale</h4>
-                    <p>Presentazione di Temu, una multinazionale, evidenziando come le sue attività si relazionano agli attuali problemi globali</p>
-                    <a href="https://www.canva.com/design/DAG5KDFtus4/sR8LbHO2xdtlIiFchsdQwQ/edit?utm_content=DAG5KDFtus4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Visualizza</a>
-                </div>
-                <div class="project-card">
-                    <h4>Poster: Diritti umani</h4>
-                    <p>Un poster sui diritti fondamentali e la loro difesa oggi.</p>
-                    <a href="https://www.canva.com/design/tuo_link_attualita_2" target="_blank">Apri su Canva</a>
-                </div>
-                <div class="project-card">
-                    <h4>Infografica: Povertà nel mondo</h4>
-                    <p>Dati e informazioni sulla povertà globale in forma visuale.</p>
-                    <a href="https://www.canva.com/design/tuo_link_attualita_3" target="_blank">Vedi infografica</a>
-                </div>
-            </div>
-        </div>
-        <p style="text-align:center; color: #ff9652; margin-top:32px;">
-            Scopri tutti i miei lavori visitando il mio <b>profilo Canva</b>!
-        </p>
-    </div>
-    <div id="chi-siamo" class="tab-content">
-        <h2 style="background:linear-gradient(90deg,#ff6b10,#ff9652);background-clip:text;-webkit-background-clip:text;color:transparent;text-align:center;">Chi Sono</h2>
-        <div class="about">
-            <div class="about-text">
-                <p>
-                    Mi chiamo Leonardo e sono uno studente appassionato di tecnologia e informatica.<br>
-                    Questo progetto rappresenta il mio impegno e la mia creatività, con l'obiettivo di mostrare cosa ho imparato nel corso degli anni di scuola media.<br><br>
-                    Sono motivato, curioso e sempre pronto a imparare cose nuove!
-                </p>
-            </div>
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80" alt="Leonardo, studente">
-            </div>
-        </div>
-    </div>
-    <div id="hobby" class="tab-content">
-        <h2 style="background:linear-gradient(90deg,#ff6b10,#ff9652);background-clip:text;-webkit-background-clip:text;color:transparent;text-align:center;">I Miei Hobby</h2>
-        <ul class="hobby-list">
-            <li>Programmare e creare siti web</li>
-            <li>Realizzare presentazioni e poster grafici</li>
-            <li>Giocare a calcio con gli amici</li>
-            <li>Leggere libri di avventura e tecnologia</li>
-            <li>Guardare video di tecnologia e YouTube tech</li>
-            <li>Disegnare e imparare nuove competenze digitali</li>
-        </ul>
-    </div>
-    <div id="skills" class="tab-content">
-        <h2 style="background:linear-gradient(90deg,#ff6b10,#ff9652);background-clip:text;-webkit-background-clip:text;color:transparent;text-align:center;">Competenze</h2>
-        <div class="skills-list">
-            <span class="skill">HTML & CSS</span>
-            <span class="skill">Presentazioni Canva</span>
-            <span class="skill">Problem Solving</span>
-            <span class="skill">Lavoro di gruppo</span>
-            <span class="skill">Photoshop base</span>
-            <span class="skill">Office (Word/PowerPoint)</span>
-            <span class="skill">Creatività</span>
-            <span class="skill">Comunicazione</span>
-        </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        &copy; 2026 Leonardo | Progetto Terza Media
+        <img class="footer-fipav-logo" src="https://www.federvolley.it/sites/all/themes/federvolley_2017/logo.svg" alt="FIPAV Logo">
+        &copy; 2024 Federazione Italiana Pallavolo - Sito Atleta Leonardo Giorgini. <br>
+        Testata e autorizzata FIPAV Marche - Sabini Castelferretti U14.<br>
+        Powered by talento, determinazione e il supporto della comunità FIPAV.
     </footer>
+
+    <!-- Mobile Navbar JS -->
     <script>
-        // Gestione tab
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const tabId = btn.getAttribute('data-tab');
-                tabContents.forEach(tc => {
-                    tc.classList.remove('active');
-                    if(tc.id === tabId) tc.classList.add('active');
-                });
-                window.scrollTo({top: 0, behavior:"smooth"});
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+        hamburger.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                navLinks.classList.toggle('open');
+            }
+        });
+        // Close nav on link click (mobile)
+        Array.from(navLinks.getElementsByTagName('a')).forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 700) navLinks.classList.remove('open');
             });
         });
     </script>
-    <!-- 
-    PUBBLICAZIONE ONLINE 24/7:
-    Per rendere questo sito web visibile online 24/7, è necessario pubblicarlo su una piattaforma di hosting web. 
-    Ecco le istruzioni base:
-
-    1. Utilizza una piattaforma di hosting gratuita come Vercel, Netlify, Render, GitHub Pages o Google Firebase Hosting.
-    2. Carica i file del tuo sito (come questo index.html e gli altri file necessari) sulla piattaforma scelta.
-    3. Segui le istruzioni della piattaforma per ottenere un indirizzo (URL) pubblico del tuo sito web.
-    4. Per una presenza 24/7, lascia il sito pubblicato su queste piattaforme: resterà sempre online.
-
-    ESEMPI RAPIDI PER IL TUO CASO:
-    - GitHub Pages: https://pages.github.com/  (Ottimo per siti statici, gratis, sempre online)
-    - Netlify: https://www.netlify.com/
-    - Vercel: https://vercel.com/
-
-    Procedura tipo con GitHub Pages:
-    - Fai un account GitHub.
-    - Crea un nuovo repository, carica il tuo index.html e gli altri file.
-    - Vai su "Settings" > "Pages", scegli il branch e clicca per pubblicare.
-    - Avrai il tuo sito online al link che ti danno, sempre disponibile.
-
-    Per un vero dominio personalizzato e + spazio, valuta piani a pagamento delle stesse piattaforme.
-    -->
 </body>
-<style>
-    /* Animazione fadeIn e slide-up per il badge autore */
-    .developer-badge {
-        display: inline-block;
-        position: fixed;
-        bottom: 16px;
-        right: 20px;
-        background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
-        color: #fff;
-        padding: 9px 26px;
-        border-radius: 23px;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        font-size: 16px;
-        letter-spacing: 0.5px;
-        box-shadow: 0 6px 24px rgba(0,0,0,0.14);
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInSlideUp 1.9s cubic-bezier(.61,1.47,.46,.95) 1.2s forwards;
-        z-index: 2222;
-        user-select: none;
-        transition: box-shadow 0.2s;
-    }
-    .developer-badge:hover {
-        box-shadow: 0 8px 32px 0 rgba(99,61,227,0.15), 0 0 0 5px #fc5c7d55;
-        background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
-        cursor: pointer;
-    }
-    @keyframes fadeInSlideUp {
-        0%   { opacity: 0; transform: translateY(50px);}
-        60%  { opacity: 1; transform: translateY(-8px);}
-        85%  { transform: translateY(4px);}
-        100% { opacity: 1; transform: translateY(0);}
-    }
-</style>
-</html>
-<div class="developer-badge" onclick="window.open('https://github.com/leonardogiorgini','_blank')">
-    Developed by Leonardo Giorgini with HTML docs!
-</div>
-<style>
-    /* Animazione generale fade-in per elementi in entrata */
-    .fade-in {
-        opacity: 0;
-        animation: fadeInGeneric 1.2s ease-out forwards;
-    }
-
-    @keyframes fadeInGeneric {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    /* Animazione slide-from-bottom generale */
-    .slide-up {
-        opacity: 0;
-        transform: translateY(36px);
-        animation: slideUpGeneric 1.1s cubic-bezier(.55,1.6,.28,.93) forwards;
-    }
-    @keyframes slideUpGeneric {
-        from {
-            opacity: 0;
-            transform: translateY(36px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Animazione pulsazione su hover bottone */
-    .pulse-on-hover:hover {
-        animation: pulse 0.5s;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1);}
-        50% { transform: scale(1.07);}
-        100% { transform: scale(1);}
-    }
-
-    /* Animazione di ingrandimento semplice */
-    .zoom-in {
-        opacity: 0;
-        transform: scale(0.92);
-        animation: zoomIn 0.7s cubic-bezier(.42,0,.58,1) forwards;
-    }
-    @keyframes zoomIn {
-        from {
-            opacity: 0;
-            transform: scale(0.92);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
-    /* Animazione di rotazione in entrata */
-    .rotate-in {
-        opacity: 0;
-        transform: rotate(-8deg) scale(0.95);
-        animation: rotateIn 0.8s cubic-bezier(.31,1.45,.5,.99) forwards;
-    }
-    @keyframes rotateIn {
-        from {
-            opacity: 0;
-            transform: rotate(-8deg) scale(0.95);
-        }
-        to {
-            opacity: 1;
-            transform: rotate(0deg) scale(1);
-        }
-    }
-</style>
