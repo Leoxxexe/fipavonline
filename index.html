@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto Terza Media</title>
+    <meta name="description" content="Portfolio professionale per il progetto della Terza Media.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --nero: #111111;
+            --arancione: #ff6b10;
+            --arancione-chiaro: #ff9652;
+            --nero-blu: #181818;
+            --bianco: #fff;
+            --grigio-chiaro: #222326;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--nero-blu) 0%, var(--nero) 45%, var(--arancione-chiaro) 120%);
+            color: var(--bianco);
+        }
+        header {
+            background: linear-gradient(90deg, var(--arancione) 25%, var(--arancione-chiaro) 100%);
+            color: var(--bianco);
+            padding: 30px 0 18px 0;
+            text-align: center;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.22);
+            letter-spacing: 1px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            letter-spacing: 2px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        nav {
+            margin-top: 17px;
+            background: linear-gradient(90deg, var(--nero) 65%, var(--arancione-chiaro) 150%);
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.21);
+        }
+        nav button {
+            background: transparent;
+            color: var(--arancione);
+            border: none;
+            font-size: 1.07rem;
+            margin: 0 15px;
+            padding: 14px 34px 14px 34px;
+            cursor: pointer;
+            border-bottom: 5px solid transparent;
+            transition: border-bottom 0.2s, color 0.25s, background 0.2s;
+            font-weight: 600;
+            outline: none;
+            border-radius: 0 0 18px 18px;
+            position: relative;
+            z-index: 2;
+        }
+        nav button.active,
+        nav button:focus {
+            border-bottom: 5px solid var(--arancione);
+            color: var(--bianco);
+            background: linear-gradient(90deg, var(--arancione-chiaro) 0%, var(--arancione) 100%);
+        }
+        .tab-content {
+            display: none;
+            max-width: 900px;
+            margin: 38px auto 0 auto;
+            background: linear-gradient(135deg, #181818 70%, #24190c 100%);
+            padding: 36px 24px;
+            border-radius: 20px;
+            box-shadow: 0 3px 24px rgba(247,110,16,0.18);
+            animation: fadein 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadein {
+            0% {opacity: 0; transform: translateY(20px);}
+            100% {opacity: 1; transform: translateY(0);}
+        }
+        .hero {
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, var(--arancione), var(--arancione-chiaro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            color: #ffe1c6;
+            font-size: 1.2rem;
+            margin-bottom: 28px;
+        }
+        .cta-btn {
+            padding: 12px 38px;
+            font-size: 1.1rem;
+            background: linear-gradient(90deg, var(--arancione), var(--arancione-chiaro));
+            border: none;
+            border-radius: 7px;
+            font-weight: 700;
+            color: var(--nero);
+            box-shadow: 0 2px 12px rgba(255,107,16,0.14);
+            cursor: pointer;
+            transition: background 0.17s, box-shadow .13s;
+        }
+        .cta-btn:hover {
+            background: linear-gradient(90deg, #ffa151, var(--arancione));
+            box-shadow: 0 4px 22px rgba(255,107,16,0.27);
+        }
+        .projects-category {
+            margin-bottom: 40px;
+        }
+        .projects-category h3 {
+            background: linear-gradient(90deg,#ff6b10,#ff9652);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 1.3rem;
+            margin-bottom: 13px;
+            margin-top: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 26px;
+            justify-content: center;
+        }
+        .project-card {
+            background: linear-gradient(135deg, #232323 60%, var(--arancione-chiaro) 180%);
+            border-radius: 12px;
+            box-shadow: 0 0 16px rgba(255,107,16,0.21);
+            padding: 23px 18px;
+            flex: 1 1 210px;
+            max-width: 270px;
+            text-align: center;
+            margin-bottom: 12px;
+            color: var(--bianco);
+        }
+        .project-card h4 {
+            color: var(--arancione);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.12rem;
+            font-weight: 700;
+        }
+        .project-card p {
+            color: #ffe9d1;
+        }
+        .project-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 7px 18px;
+            color: var(--nero);
+            background: linear-gradient(90deg, var(--arancione), var(--arancione-chiaro));
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.17s, color 0.17s;
+        }
+        .project-card a:hover {
+            background: var(--arancione);
+            color: #fff;
+        }
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            align-items: center;
+        }
+        .about-text {
+            flex: 2;
+        }
+        .about-img {
+            flex: 1;
+            text-align: center;
+        }
+        .about-img img {
+            max-width: 210px;
+            width: 100%;
+            border-radius: 13px;
+            box-shadow: 0 6px 32px rgba(255,107,16,0.17);
+            border: 3px solid var(--arancione);
+        }
+        .hobby-list {
+            margin-top: 12px;
+            padding-left: 0;
+            list-style: none;
+            color: #ffd1ad;
+        }
+        .hobby-list li::before {
+            content: "• ";
+            color: var(--arancione);
+            font-size: 1.1em;
+        }
+        .skills-list {
+            margin-top: 19px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+        }
+        .skill {
+            background: linear-gradient(90deg, #151515 80%, var(--arancione-chiaro) 120%);
+            color: var(--arancione-chiaro);
+            border-radius: 7px;
+            padding: 5px 19px;
+            font-weight: 600;
+            font-size: 1.03em;
+            box-shadow: 0 1px 6px rgba(255,107,16,0.19);
+        }
+        footer {
+            background: linear-gradient(90deg, var(--arancione), var(--arancione-chiaro));
+            color: var(--nero);
+            text-align: center;
+            padding: 24px 10px;
+            font-size: 1.02rem;
+            margin-top: 39px;
+            letter-spacing: 1px;
+            border-radius: 24px 24px 0 0;
+        }
+        @media (max-width: 1000px) {
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-img {
+                margin-bottom: 23px;
+            }
+            .tab-content {
+                padding: 24px 6px;
+            }
+        }
+        @media (max-width: 600px) {
+            nav button {
+                padding: 12px 12px;
+                font-size: 1rem;
+                margin: 0 2px;
+            }
+            .project-card {
+                max-width: 98vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Progetto Terza Media</h1>
+    </header>
+    <nav>
+        <button class="tab-btn active" data-tab="home">Home</button>
+        <button class="tab-btn" data-tab="progetti">Progetti</button>
+        <button class="tab-btn" data-tab="chi-siamo">Chi Sono</button>
+        <button class="tab-btn" data-tab="hobby">I Miei Hobby</button>
+        <button class="tab-btn" data-tab="skills">Competenze</button>
+    </nav>
+
+    <div id="home" class="tab-content active">
+        <div class="hero">
+            <h2>Benvenuto sul mio sito professionale!</h2>
+            <p>
+                Questo sito è stato realizzato come progetto per la mia terza media.<br>
+                In queste schede troverai i miei progetti, chi sono, hobby e le mie competenze!
+            </p>
+            <button onclick="document.querySelector('[data-tab=progetti]').click()" class="cta-btn">Guarda i miei progetti</button>
+        </div>
+    </div>
+    <div id="progetti" class="tab-content">
+        <h2 style="background:linear-gradient(90deg,#ff6b10,#ff9652);background-clip:text;-webkit-background-clip:text;color:transparent;text-align:center;">Progetti su Canva</h2>
+        
+        <!-- Categoria 1: Il '900 -->
+        <div class="projects-category">
+            <h3>Il '900</h3>
+            <div class="projects">
+                <div class="project-card">
+                    <h4>Presentazione sul fascismo</h4>
+                    <p>Una presentazione chiara ed efficace che approfondisce la scuola nel periodo del fascismo.</p>
+                    <a href="https://www.canva.com/design/DAG_sUK8k9U/us1VxrWj6p0iAKr8w25I7g/edit?utm_content=DAG_sUK8k9U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Guarda su Canva</a>
+                </div>
+                <div class="project-card">
+                    <h4>Poster sull'arte del '900</h4>
+                    <p>Un poster grafico per esplorare i movimenti artistici del Novecento.</p>
+                    <a href="https://www.canva.com/design/tuo_link_900_2" target="_blank">Guarda su Canva</a>
+                </div>
+                <div class="project-card">
+                    <h4>Infografica su eventi storici</h4>
+                    <p>Infografica che riassume gli eventi più importanti del '900.</p>
+                    <a href="https://www.canva.com/design/tuo_link_900_3" target="_blank">Scopri di più</a>
+                </div>
+            </div>
+        </div>
+        <!-- Categoria 2: Agenda 2030 -->
+        <div class="projects-category">
+            <h3>Agenda 2030</h3>
+            <div class="projects">
+                <div class="project-card">
+                    <h4>Lavoro sulle multinazionali </h4>
+                    <p>Presentazione di una multinazionale (Temu) con riferimento agli obiettivi dell’Agenda 2030 e al suo possibile impatto sulla sostenibilità.</p>
+                    <a href="https://www.canva.com/design/DAG5KDFtus4/sR8LbHO2xdtlIiFchsdQwQ/edit?utm_content=DAG5KDFtus4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Visualizza</a>
+                </div>
+                <div class="project-card">
+                    <h4>Poster: Proteggere il Pianeta</h4>
+                    <p>Un poster di sensibilizzazione sull'importanza della salvaguardia ambientale.</p>
+                    <a href="https://www.canva.com/design/tuo_link_agenda2030_2" target="_blank">Apri su Canva</a>
+                </div>
+                <div class="project-card">
+                    <h4>Infografica: Eliminare la fame</h4>
+                    <p>Infografica informativa sulle strategie per eliminare la fame nel mondo.</p>
+                    <a href="https://www.canva.com/design/tuo_link_agenda2030_3" target="_blank">Vedi infografica</a>
+                </div>
+            </div>
+        </div>
+        <!-- Categoria 3: Adolescenza -->
+        <div class="projects-category">
+            <h3>L'adolescenza</h3>
+            <div class="projects">
+                <div class="project-card">
+                    <h4>Presentazione: I cambiamenti dell'adolescenza</h4>
+                    <p>Una presentazione che illustra i cambiamenti fisici e psicologici in questa età.</p>
+                    <a href="https://www.canva.com/design/tuo_link_adolescenza_1" target="_blank">Guarda la presentazione</a>
+                </div>
+                <div class="project-card">
+                    <h4>Poster: L'importanza dell'amicizia</h4>
+                    <p>Un poster creativo sulle relazioni e l'amicizia tra adolescenti.</p>
+                    <a href="https://www.canva.com/design/tuo_link_adolescenza_2" target="_blank">Guarda su Canva</a>
+                </div>
+                <div class="project-card">
+                    <h4>Infografica: Social e adolescenti</h4>
+                    <p>Infografica che esplora il rapporto tra adolescenti e social media.</p>
+                    <a href="https://www.canva.com/design/tuo_link_adolescenza_3" target="_blank">Vedi infografica</a>
+                </div>
+            </div>
+        </div>
+        <!-- Categoria 4: I problemi del mondo attuale -->
+        <div class="projects-category">
+            <h3>I problemi del mondo attuale</h3>
+            <div class="projects">
+                <div class="project-card">
+                    <h4>Presentazione di una multinazionale</h4>
+                    <p>Presentazione di Temu, una multinazionale, evidenziando come le sue attività si relazionano agli attuali problemi globali</p>
+                    <a href="https://www.canva.com/design/DAG5KDFtus4/sR8LbHO2xdtlIiFchsdQwQ/edit?utm_content=DAG5KDFtus4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Visualizza</a>
+                </div>
+                <div class="project-card">
+                    <h4>Poster: Diritti umani</h4>
+                    <p>Un poster sui diritti fondamentali e la loro difesa oggi.</p>
+                    <a href="https://www.canva.com/design/tuo_link_attualita_2" target="_blank">Apri su Canva</a>
+                </div>
+                <div class="project-card">
+                    <h4>Infografica: Povertà nel mondo</h4>
+                    <p>Dati e informazioni sulla povertà globale in forma visuale.</p>
+                    <a href="https://www.canva.com/design/tuo_link_attualita_3" target="_blank">Vedi infografica</a>
+                </div>
+            </div>
+        </div>
+        <p style="text-align:center; color: #ff9652; margin-top:32px;">
+            Scopri tutti i miei lavori visitando il mio <b>profilo Canva</b>!
+        </p>
+    </div>
+    <div id="chi-siamo" class="tab-content">
+        <h2 style="background:linear-gradient(90deg,#ff6b10,#ff9652);background-clip:text;-webkit-background-clip:text;color:transparent;text-align:center;">Chi Sono</h2>
+        <div class="about">
+            <div class="about-text">
+                <p>
+                    Mi chiamo Leonardo e sono uno studente appassionato di tecnologia e informatica.<br>
+                    Questo progetto rappresenta il mio impegno e la mia creatività, con l'obiettivo di mostrare cosa ho imparato nel corso degli anni di scuola media.<br><br>
+                    Sono motivato, curioso e sempre pronto a imparare cose nuove!
+                </p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80" alt="Leonardo, studente">
+            </div>
+        </div>
+    </div>
+    <div id="hobby" class="tab-content">
+        <h2 style="background:linear-gradient(90deg,#ff6b10,#ff9652);background-clip:text;-webkit-background-clip:text;color:transparent;text-align:center;">I Miei Hobby</h2>
+        <ul class="hobby-list">
+            <li>Programmare e creare siti web</li>
+            <li>Realizzare presentazioni e poster grafici</li>
+            <li>Giocare a calcio con gli amici</li>
+            <li>Leggere libri di avventura e tecnologia</li>
+            <li>Guardare video di tecnologia e YouTube tech</li>
+            <li>Disegnare e imparare nuove competenze digitali</li>
+        </ul>
+    </div>
+    <div id="skills" class="tab-content">
+        <h2 style="background:linear-gradient(90deg,#ff6b10,#ff9652);background-clip:text;-webkit-background-clip:text;color:transparent;text-align:center;">Competenze</h2>
+        <div class="skills-list">
+            <span class="skill">HTML & CSS</span>
+            <span class="skill">Presentazioni Canva</span>
+            <span class="skill">Problem Solving</span>
+            <span class="skill">Lavoro di gruppo</span>
+            <span class="skill">Photoshop base</span>
+            <span class="skill">Office (Word/PowerPoint)</span>
+            <span class="skill">Creatività</span>
+            <span class="skill">Comunicazione</span>
+        </div>
+    </div>
+    <footer>
+        &copy; 2026 Leonardo | Progetto Terza Media
+    </footer>
+    <script>
+        // Gestione tab
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                tabContents.forEach(tc => {
+                    tc.classList.remove('active');
+                    if(tc.id === tabId) tc.classList.add('active');
+                });
+                window.scrollTo({top: 0, behavior:"smooth"});
+            });
+        });
+    </script>
+    <!-- 
+    PUBBLICAZIONE ONLINE 24/7:
+    Per rendere questo sito web visibile online 24/7, è necessario pubblicarlo su una piattaforma di hosting web. 
+    Ecco le istruzioni base:
+
+    1. Utilizza una piattaforma di hosting gratuita come Vercel, Netlify, Render, GitHub Pages o Google Firebase Hosting.
+    2. Carica i file del tuo sito (come questo index.html e gli altri file necessari) sulla piattaforma scelta.
+    3. Segui le istruzioni della piattaforma per ottenere un indirizzo (URL) pubblico del tuo sito web.
+    4. Per una presenza 24/7, lascia il sito pubblicato su queste piattaforme: resterà sempre online.
+
+    ESEMPI RAPIDI PER IL TUO CASO:
+    - GitHub Pages: https://pages.github.com/  (Ottimo per siti statici, gratis, sempre online)
+    - Netlify: https://www.netlify.com/
+    - Vercel: https://vercel.com/
+
+    Procedura tipo con GitHub Pages:
+    - Fai un account GitHub.
+    - Crea un nuovo repository, carica il tuo index.html e gli altri file.
+    - Vai su "Settings" > "Pages", scegli il branch e clicca per pubblicare.
+    - Avrai il tuo sito online al link che ti danno, sempre disponibile.
+
+    Per un vero dominio personalizzato e + spazio, valuta piani a pagamento delle stesse piattaforme.
+    -->
+</body>
+<style>
+    /* Animazione fadeIn e slide-up per il badge autore */
+    .developer-badge {
+        display: inline-block;
+        position: fixed;
+        bottom: 16px;
+        right: 20px;
+        background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+        color: #fff;
+        padding: 9px 26px;
+        border-radius: 23px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInSlideUp 1.9s cubic-bezier(.61,1.47,.46,.95) 1.2s forwards;
+        z-index: 2222;
+        user-select: none;
+        transition: box-shadow 0.2s;
+    }
+    .developer-badge:hover {
+        box-shadow: 0 8px 32px 0 rgba(99,61,227,0.15), 0 0 0 5px #fc5c7d55;
+        background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+        cursor: pointer;
+    }
+    @keyframes fadeInSlideUp {
+        0%   { opacity: 0; transform: translateY(50px);}
+        60%  { opacity: 1; transform: translateY(-8px);}
+        85%  { transform: translateY(4px);}
+        100% { opacity: 1; transform: translateY(0);}
+    }
+</style>
+</html>
+<div class="developer-badge" onclick="window.open('https://github.com/leonardogiorgini','_blank')">
+    Developed by Leonardo Giorgini with HTML docs!
+</div>
+<style>
+    /* Animazione generale fade-in per elementi in entrata */
+    .fade-in {
+        opacity: 0;
+        animation: fadeInGeneric 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeInGeneric {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Animazione slide-from-bottom generale */
+    .slide-up {
+        opacity: 0;
+        transform: translateY(36px);
+        animation: slideUpGeneric 1.1s cubic-bezier(.55,1.6,.28,.93) forwards;
+    }
+    @keyframes slideUpGeneric {
+        from {
+            opacity: 0;
+            transform: translateY(36px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Animazione pulsazione su hover bottone */
+    .pulse-on-hover:hover {
+        animation: pulse 0.5s;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1);}
+        50% { transform: scale(1.07);}
+        100% { transform: scale(1);}
+    }
+
+    /* Animazione di ingrandimento semplice */
+    .zoom-in {
+        opacity: 0;
+        transform: scale(0.92);
+        animation: zoomIn 0.7s cubic-bezier(.42,0,.58,1) forwards;
+    }
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.92);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Animazione di rotazione in entrata */
+    .rotate-in {
+        opacity: 0;
+        transform: rotate(-8deg) scale(0.95);
+        animation: rotateIn 0.8s cubic-bezier(.31,1.45,.5,.99) forwards;
+    }
+    @keyframes rotateIn {
+        from {
+            opacity: 0;
+            transform: rotate(-8deg) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+    }
+</style>
